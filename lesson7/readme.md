@@ -1,0 +1,1 @@
+﻿Первое знакомство с VBO - Vertece Buffer Object
