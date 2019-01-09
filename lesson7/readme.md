@@ -1,1 +1,4 @@
-﻿Первое знакомство с VBO - Vertece Buffer Object
+﻿Первое знакомство с VBO - Vertex Buffer Object
+ 
+ Видео здесь
+ https://youtu.be/zBUWmxwefto
