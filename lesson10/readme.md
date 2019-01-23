@@ -4,3 +4,5 @@
 Сохраняем результат в bin файлы 
 Считываем bin файлы Xamarin Android App и загружаем данные из них в VBO
 
+https://youtu.be/UqJZnSmleL0
+
