@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace OBJParser
 {
@@ -21,15 +22,63 @@ namespace OBJParser
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string pathFile = string.Empty;
+        private string pathFolder = string.Empty;
+        private string nameFile = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
+            tb.Text = "Please, chose obj file.";
         }
 
         private void doParse_Click(object sender, RoutedEventArgs e)
-        {           
-            List<byte[]> objectData = ParseObj.ParsedObject("d:\\object3.obj");
-            File.WriteAllBytes("d:\\object3_objvertex", objectData[0]);
+        {
+
+
+            if (!string.IsNullOrEmpty(pathFile) && pathFile.Contains(".obj"))
+            {
+                try
+                {
+
+                    List<byte[]> objectData = ParseObj.ParsedObject(pathFile);
+                    File.WriteAllBytes(pathFolder+"\\"+nameFile+"_objvertex", objectData[0]);
+                    File.WriteAllBytes(pathFolder + "\\"+nameFile+"_objtexture", objectData[1]);
+                    File.WriteAllBytes(pathFolder + "\\"+nameFile+"_objnormal", objectData[2]);
+
+                    tb.Text = "Creating files in folder " + pathFolder + " is complited.";
+                }
+                catch (Exception ex)
+                {
+                    tb.Text = "Error: \"" + ex.Message + "\".";
+                }
+
+            }
+
+            else
+            {
+                tb.Text = "Please, chose obj file.";
+            }
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.Filter = "3d files (*.obj)|*.obj|All files (*.*)|*.*";
+            dialog.FilterIndex = 2;
+
+            Nullable<bool> result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                // Open document
+                pathFile = dialog.FileName;
+                pathFolder = Path.GetDirectoryName(pathFile);
+                nameFile = System.IO.Path.GetFileNameWithoutExtension(pathFile);
+
+
+                tb.Text = "File with path \"" + pathFile + "\" has chosen.";
+            }
         }
     }
 }

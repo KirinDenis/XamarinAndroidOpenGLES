@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Created Denis Kirin and Vladimir Kovalevich
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,8 +12,6 @@ namespace OBJParser
 
     public class ParseObj
     {
-
-
         public static List<byte[]> ParsedObject(string fileName)
         {
             List<byte[]> result = new List<byte[]>();
@@ -23,6 +22,9 @@ namespace OBJParser
             ArrayList arrText = new ArrayList();
 
             ArrayList vertexModel = new ArrayList();
+            ArrayList textureModel = new ArrayList();
+            ArrayList normalModel = new ArrayList();
+
             ArrayList facesModel = new ArrayList();
             
             StreamReader objReader = new StreamReader(fileName);
@@ -35,7 +37,7 @@ namespace OBJParser
             }
             objReader.Close();
 
-
+            //Шаг 1
             //получаем и укладываем в список вертексы модели
             foreach (string line in arrText)
             {
@@ -74,7 +76,8 @@ namespace OBJParser
 
                         face = new Face();
                         face.vertex = Convert.ToInt32(splitedItem[0]);
-                        face.normal = Convert.ToInt32(splitedItem[1]);
+                        face.texture = Convert.ToInt32(splitedItem[1]);
+                        face.normal = Convert.ToInt32(splitedItem[2]);
 
                         faces[i] = face;
                     }
@@ -111,9 +114,103 @@ namespace OBJParser
                 }
             }
 
-            byte[] byteArray = new byte[vertexArray.Length * 4];
-            Buffer.BlockCopy(vertexArray, 0, byteArray, 0, byteArray.Length);
-            result.Add(byteArray);
+            byte[] byteArrayVertex = new byte[vertexArray.Length * 4];
+            Buffer.BlockCopy(vertexArray, 0, byteArrayVertex, 0, byteArrayVertex.Length);
+            result.Add(byteArrayVertex);
+
+            // vt ШАГ 2
+            //получаем и укладываем в список все координаты текстур модели
+            foreach (string line in arrText)
+            {
+                if (line.Contains("vt "))
+                {
+
+                    string[] splitedLine = line.Split(' ');
+                    splitedLine = splitedLine.Where(a => a != "vt").ToArray();
+
+                    float[] convertedLine = new float[splitedLine.Length];
+                    for (int i = 0; i < splitedLine.Length; i++)
+                    {
+                        convertedLine[i] = float.Parse(splitedLine[i]);
+                    }
+                    textureModel.Add(convertedLine);
+                }
+            }
+
+
+            float[] textureArray = new float[countVertexes * 2];
+            count = 0;
+            //собираем массив флоатов с координатоми текстур для построения модели
+            foreach (Face[] facesForCount in facesModel)
+            {
+                foreach (Face faceForCount in facesForCount)
+                {
+                    int positionTexture = faceForCount.texture;
+                    float[] coordinateTexture = (float[])textureModel[positionTexture - 1];
+
+                    foreach (float item in coordinateTexture)
+                    {
+                        textureArray[count] = item;
+
+                        count++;
+                    }
+                }
+            }
+
+
+            byte[] byteArrayTexture = new byte[textureArray.Length * 4];
+            Buffer.BlockCopy(textureArray, 0, byteArrayTexture, 0, byteArrayTexture.Length);
+            result.Add(byteArrayTexture);
+
+
+
+            // vn ШАГ 3
+            //получаем и укладываем в список все координаты текстур модели
+            foreach (string line in arrText)
+            {
+                if (line.Contains("vn "))
+                {
+
+                    string[] splitedLine = line.Split(' ');
+                    splitedLine = splitedLine.Where(a => a != "vn").ToArray();
+
+                    float[] convertedLine = new float[splitedLine.Length];
+                    for (int i = 0; i < splitedLine.Length; i++)
+                    {
+                        convertedLine[i] = float.Parse(splitedLine[i]);
+                    }
+                    normalModel.Add(convertedLine);
+                }
+            }
+
+
+            float[] normalArray = new float[countVertexes * 3];
+            count = 0;
+            //собираем массив флоатов с координатоми нормалей для построения модели
+            foreach (Face[] facesForCount in facesModel)
+            {
+                foreach (Face faceForCount in facesForCount)
+                {
+                    int positionNormal = faceForCount.normal;
+                    float[] coordinateNormal = (float[])normalModel[positionNormal - 1];
+
+                    foreach (float item in coordinateNormal)
+                    {
+                        normalArray[count] = item;
+
+                        count++;
+                    }
+                }
+            }
+
+
+            byte[] byteArrayNormal = new byte[normalArray.Length * 4];
+            Buffer.BlockCopy(normalArray, 0, byteArrayNormal, 0, byteArrayNormal.Length);
+            result.Add(byteArrayNormal);
+
+
+
+
 
             return result;
         }
