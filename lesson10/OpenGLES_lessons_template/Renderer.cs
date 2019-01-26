@@ -14,6 +14,9 @@ namespace OpenGLES_lessons_template
     /// lesson RU description http://dedfox.com/izuchaem-opengl-es2-pod-android-urok-3-delaem-osveshhenie-realistichnee-po-tochechnyj-raschet-osveshheniya/
     /// used model https://free3d.com/3d-model/house-43064.html
     /// https://free3d.com/user/blenderister
+    /// Old house model
+    /// https://free3d.com/3d-model/old-house-2-96599.html
+    ///https://free3d.com/user/tharidu
     /// </summary>
     class Renderer : Java.Lang.Object, GLSurfaceView.IRenderer
     {
@@ -246,16 +249,16 @@ namespace OpenGLES_lessons_template
             //Data buffers to VBO
             GLES20.GlGenBuffers(4, VBOBuffers, 0); //2 buffers for vertices, texture and colors
 
-            GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[0]);
+
 
             //--------------------------------------------
+            //int resourceId = //context.Resources.GetIdentifier("object1_objvertex", "raw", context.PackageName);
+            GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[0]);
             float[] floatArray;
             long size;
             // Vertex
-            FloatBuffer vertexBuffer;
-
-            //int resourceId = //context.Resources.GetIdentifier("object1_objvertex", "raw", context.PackageName);
-            Stream fileIn = context.Resources.OpenRawResource(Resource.Raw.object3_objvertex) as Stream;
+            FloatBuffer vertexBuffer;            
+            Stream fileIn = context.Resources.OpenRawResource(Resource.Raw.OldHouse_objvertex) as Stream;
             MemoryStream m = new MemoryStream();
             fileIn.CopyTo(m);
             size = m.Length;
@@ -270,6 +273,7 @@ namespace OpenGLES_lessons_template
             //VBOManager.setSize(fileName, vertexBuffer.Capacity() / 4); //is size of vertex count = 1 vertex 4 float x,y,z, 1                                
             GLES20.GlBufferData(GLES20.GlArrayBuffer, vertexBuffer.Capacity() * mBytesPerFloat, vertexBuffer, GLES20.GlStaticDraw);
             floatArray = null;
+            vertexBuffer = null;
             fileIn.Close();
             m.Close();
             //--------------------------------------------
@@ -278,11 +282,61 @@ namespace OpenGLES_lessons_template
             GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[1]);
             GLES20.GlBufferData(GLES20.GlArrayBuffer, mTriangleColors.Capacity() * mBytesPerFloat, mTriangleColors, GLES20.GlStaticDraw);
 
-            GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[2]);
-            GLES20.GlBufferData(GLES20.GlArrayBuffer, mTriangleTextureUVMap.Capacity() * mBytesPerFloat, mTriangleTextureUVMap, GLES20.GlStaticDraw);
 
+            //Textures -----------------------------------------
+            //GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[2]);
+            //GLES20.GlBufferData(GLES20.GlArrayBuffer, mTriangleTextureUVMap.Capacity() * mBytesPerFloat, mTriangleTextureUVMap, GLES20.GlStaticDraw);
+
+            GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[2]);
+            // Vertex
+            
+            fileIn = context.Resources.OpenRawResource(Resource.Raw.OldHouse_objtexture) as Stream;
+            m = new MemoryStream();
+            fileIn.CopyTo(m);
+            size = m.Length;
+            floatArray = new float[size / 4];
+            //objectSize = (int)(size / 4 / 3);
+            System.Buffer.BlockCopy(m.ToArray(), 0, floatArray, 0, (int)size);
+
+            vertexBuffer = FloatBuffer.Allocate((int)size / 4); // float array to
+            vertexBuffer.Put(floatArray, 0, (int)size / 4);
+            vertexBuffer.Flip();
+
+            //VBOManager.setSize(fileName, vertexBuffer.Capacity() / 4); //is size of vertex count = 1 vertex 4 float x,y,z, 1                                
+            GLES20.GlBufferData(GLES20.GlArrayBuffer, vertexBuffer.Capacity() * mBytesPerFloat, vertexBuffer, GLES20.GlStaticDraw);
+            floatArray = null;
+            vertexBuffer = null;
+            fileIn.Close();
+            m.Close();
+
+
+            //ENDOF Textures -----------------------------------------
+
+            // GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[3]);
+            /// GLES20.GlBufferData(GLES20.GlArrayBuffer, mTriangleNormal.Capacity() * mBytesPerFloat, mTriangleNormal, GLES20.GlStaticDraw);
+            /// Normales
             GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[3]);
-            GLES20.GlBufferData(GLES20.GlArrayBuffer, mTriangleNormal.Capacity() * mBytesPerFloat, mTriangleNormal, GLES20.GlStaticDraw);
+            // Vertex
+
+            fileIn = context.Resources.OpenRawResource(Resource.Raw.OldHouse_objnormal) as Stream;
+            m = new MemoryStream();
+            fileIn.CopyTo(m);
+            size = m.Length;
+            floatArray = new float[size / 4];
+            //objectSize = (int)(size / 4 / 3);
+            System.Buffer.BlockCopy(m.ToArray(), 0, floatArray, 0, (int)size);
+
+            vertexBuffer = FloatBuffer.Allocate((int)size / 4); // float array to
+            vertexBuffer.Put(floatArray, 0, (int)size / 4);
+            vertexBuffer.Flip();
+
+            //VBOManager.setSize(fileName, vertexBuffer.Capacity() / 4); //is size of vertex count = 1 vertex 4 float x,y,z, 1                                
+            GLES20.GlBufferData(GLES20.GlArrayBuffer, vertexBuffer.Capacity() * mBytesPerFloat, vertexBuffer, GLES20.GlStaticDraw);
+            floatArray = null;
+            vertexBuffer = null;
+            fileIn.Close();
+            m.Close();
+
 
             GLES20.GlBindBuffer(GLES20.GlArrayBuffer, 0);
 
@@ -294,7 +348,7 @@ namespace OpenGLES_lessons_template
                 //Android.Graphics cose class Matrix exists at both Android.Graphics and Android.OpenGL and this is only sample of using 
                 Android.Graphics.BitmapFactory.Options options = new Android.Graphics.BitmapFactory.Options();
                 options.InScaled = false; // No pre-scaling
-                Android.Graphics.Bitmap bitmap = Android.Graphics.BitmapFactory.DecodeResource(context.Resources, Resource.Drawable.texture1, options);
+                Android.Graphics.Bitmap bitmap = Android.Graphics.BitmapFactory.DecodeResource(context.Resources, Resource.Drawable.body, options);
                 GLES20.GlBindTexture(GLES20.GlTexture2d, textureHandle[0]);
                 GLES20.GlTexParameteri(GLES20.GlTexture2d, GLES20.GlTextureMinFilter, GLES20.GlNearest);
                 GLES20.GlTexParameteri(GLES20.GlTexture2d, GLES20.GlTextureMagFilter, GLES20.GlNearest);
@@ -309,20 +363,20 @@ namespace OpenGLES_lessons_template
 
             //Setup OpenGL ES 
             GLES20.GlClearColor(0.0f, 0.0f, 0.5f, 0.0f);
-            GLES20.GlEnable(GLES20.GlDepthTest); //uncoment if needs enabled dpeth test
-            GLES20.GlEnable(2884); // GlCullFace == 2884 see OpenGL documentation to this constant value  
-            GLES20.GlCullFace(GLES20.GlBack);
+           GLES20.GlEnable(GLES20.GlDepthTest); //uncoment if needs enabled dpeth test
+          //  GLES20.GlEnable(2884); // GlCullFace == 2884 see OpenGL documentation to this constant value  
+          //  GLES20.GlCullFace(GLES20.GlFront);
 
 
             // Position the eye behind the origin.
             float eyeX = 0.0f;
             float eyeY = 0.0f;
-            float eyeZ = 4.5f;
+            float eyeZ = 7.5f;
 
             // We are looking toward the distance
             float lookX = 0.0f;
             float lookY = 0.0f;
-            float lookZ = -5.0f;
+            float lookZ = -7.0f;
 
             // Set our up vector. This is where our head would be pointing were we holding the camera.
             float upX = 0.0f;
@@ -357,8 +411,8 @@ namespace OpenGLES_lessons_template
                   + "   float distance = length(u_LightPos - modelViewVertex);\n"
                   + "   vec3 lightVector = normalize(u_LightPos - modelViewVertex);\n"
                   + "   float diffuse = max(dot(modelViewNormal, lightVector), 0.1);\n"
-                  + "   diffuse = diffuse * (1.0 / (1.0 + (0.25 * distance * distance)) + 0.5);\n"
-                  + "   v_Color = a_Color * vec4(diffuse);\n"   //Pass the color with light aspect to fragment shader                  
+                  + "   diffuse = diffuse * (1.0 / (1.0 + (0.7 * distance * distance)))+0.5;\n"
+                  + "   v_Color = vec4(diffuse);\n"   //Pass the color with light aspect to fragment shader                  
                   + "   v_TextureCoord = a_TextureCoord; \n"     // Pass the texture coordinate through to the fragment shader. It will be interpolated across the triangle.                                                                              
                   + "   gl_Position = u_MVPMatrix   \n"     // gl_Position is a special variable used to store the final position.
                   + "                 * a_Position; \n"     // Multiply the vertex by the matrix to get the final point in normalized screen coordinates.			                                            			 
@@ -373,6 +427,7 @@ namespace OpenGLES_lessons_template
               + "void main()                    \n"     // The entry point for our fragment shader.
               + "{                              \n"
               + "   gl_FragColor = texture2D(u_Texture, v_TextureCoord) * v_Color;  \n"   // Pass the color directly through the pipeline.		                
+            //  + "   gl_FragColor = texture2D(u_Texture, v_TextureCoord);  \n"   // Pass the color directly through the pipeline.		                
               + "}                              \n";
 
             int vertexShaderHandle = GLES20.GlCreateShader(GLES20.GlVertexShader);
@@ -504,9 +559,10 @@ namespace OpenGLES_lessons_template
             angleInDegrees += 0.1f;
             //Prepare model transformation matrix
             float[] mModelMatrix = new float[16];
-            Matrix.SetIdentityM(mModelMatrix, 0);
-            Matrix.RotateM(mModelMatrix, 0, angleInDegrees, 1.0f, 0.4f, 0.2f);
-            Matrix.ScaleM(mModelMatrix, 0, 0.5f, 0.5f, 0.5f);
+            Matrix.SetIdentityM(mModelMatrix, 0);            
+            Matrix.RotateM(mModelMatrix, 0, angleInDegrees, 0.0f, 0.4f, 0.0f);
+            Matrix.TranslateM(mModelMatrix, 0, 0.0f, -2.4f, 0.0f);
+            Matrix.ScaleM(mModelMatrix, 0, 0.02f, 0.02f, 0.02f);
 
             //Draw with VBO 
             GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[0]);

@@ -70,6 +70,9 @@
     <AndroidResource Include="Resources\raw\object1_objvertex" />
     <AndroidResource Include="Resources\raw\object2_objvertex" />
     <AndroidResource Include="Resources\raw\object3_objvertex" />
+    <AndroidResource Include="Resources\raw\OldHouse_objnormal" />
+    <AndroidResource Include="Resources\raw\OldHouse_objtexture" />
+    <AndroidResource Include="Resources\raw\OldHouse_objvertex" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml">
@@ -85,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\texture1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\body.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
