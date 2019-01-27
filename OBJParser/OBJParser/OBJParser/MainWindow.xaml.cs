@@ -29,12 +29,11 @@ namespace OBJParser
         public MainWindow()
         {
             InitializeComponent();
-            tb.Text = "Please, chose obj file.";
+            logTextBlock.Text += "Please, chose obj file.\n";
         }
 
         private void doParse_Click(object sender, RoutedEventArgs e)
         {
-
 
             if (!string.IsNullOrEmpty(pathFile) && pathFile.Contains(".obj"))
             {
@@ -46,18 +45,18 @@ namespace OBJParser
                     File.WriteAllBytes(pathFolder + "\\"+nameFile+"_objtexture", objectData[1]);
                     File.WriteAllBytes(pathFolder + "\\"+nameFile+"_objnormal", objectData[2]);
 
-                    tb.Text = "Creating files in folder " + pathFolder + " is complited.";
+                    logTextBlock.Text += "Creating files in folder " + pathFolder + " is complited.\n";
                 }
                 catch (Exception ex)
                 {
-                    tb.Text = "Error: \"" + ex.Message + "\".";
+                    logTextBlock.Text += "Error: \"" + ex.Message + "\".\n";
                 }
 
             }
 
             else
             {
-                tb.Text = "Please, chose obj file.";
+                logTextBlock.Text += "Please, chose obj file.\n";
             }
         }
 
@@ -75,10 +74,26 @@ namespace OBJParser
                 pathFile = dialog.FileName;
                 pathFolder = Path.GetDirectoryName(pathFile);
                 nameFile = System.IO.Path.GetFileNameWithoutExtension(pathFile);
-
-
-                tb.Text = "File with path \"" + pathFile + "\" has chosen.";
+                logTextBlock.Text += "File with path \"" + pathFile + "\" has chosen.\n";
+                doParse_Click(null, null);
             }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                OpenFile_Click(null, null);
+            }
+            else
+            {
+                Close();
+            }
+        }
+
+        private void linkTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://en.wikipedia.org/wiki/Wavefront_.obj_file");
         }
     }
 }
