@@ -66,6 +66,8 @@ namespace OpenGLES_lessons_template
         //1 texture handle storage
         private int[] textureHandle = new int[1];
 
+        private float lb = 0.001f;
+
         public Renderer(Context context) : base()
         {
             this.context = context;
@@ -362,7 +364,7 @@ namespace OpenGLES_lessons_template
             System.GC.Collect();
 
             //Setup OpenGL ES 
-            GLES20.GlClearColor(0.0f, 0.0f, 0.5f, 0.0f);
+            GLES20.GlClearColor(0.0f, 0.0f, 0.0f, 0.0f);
            GLES20.GlEnable(GLES20.GlDepthTest); //uncoment if needs enabled dpeth test
           //  GLES20.GlEnable(2884); // GlCullFace == 2884 see OpenGL documentation to this constant value  
           //  GLES20.GlCullFace(GLES20.GlFront);
@@ -396,7 +398,7 @@ namespace OpenGLES_lessons_template
             //-> HOW MANY faces in your object (model) in VBO -> how many times the vertex shader will be called by OpenGL
             string vertexShader =
                     "uniform mat4 u_MVPMatrix;      \n"     // A constant representing the combined model/view/projection matrix.
-                  + "uniform vec3 u_LightPos;       \n"     // A constant representing the light source position
+                  + "uniform vec4 u_LightPos;       \n"     // A constant representing the light source position
                   + "attribute vec4 a_Position;     \n"     // Per-vertex position information we will pass in. (it means vec4[x,y,z,w] but we put only x,y,z at this sample
                   + "attribute vec4 a_Color;        \n"     // Per-vertex color information we will pass in.			  
                   + "varying vec4 v_Color;          \n"     // This will be passed into the fragment shader.
@@ -408,11 +410,12 @@ namespace OpenGLES_lessons_template
                   //light calculation section for fragment shader 
                   + "   vec3 modelViewVertex = vec3(u_MVPMatrix * a_Position);\n"
                   + "   vec3 modelViewNormal = vec3(u_MVPMatrix * vec4(a_Normal, 0.0));\n"
-                  + "   float distance = length(u_LightPos - modelViewVertex);\n"
-                  + "   vec3 lightVector = normalize(u_LightPos - modelViewVertex);\n"
-                  + "   float diffuse = max(dot(modelViewNormal, lightVector), 0.1);\n"
-                  + "   diffuse = diffuse * (1.0 / (1.0 + (0.7 * distance * distance)))+0.5;\n"
-                  + "   v_Color = vec4(diffuse);\n"   //Pass the color with light aspect to fragment shader                  
+                  + "   float distance = length(u_LightPos.xyz - modelViewVertex);\n"
+                  + "   vec3 lightVector = normalize(u_LightPos.xyz - modelViewVertex);\n"
+                  + "   float diffuse = max(dot(modelViewNormal, lightVector), 0.1);\n"                  
+                  + "   diffuse = diffuse * (1.0 / (1.0 + (u_LightPos.w * distance * distance)));\n"
+                  + "   v_Color = vec4(diffuse, diffuse, diffuse, diffuse);\n"   //Pass the color with light aspect to fragment shader R G B A                  
+                                                                                 //+ "   v_Color = vec4(a_Normal, 1.0);\n"   //Test normals array loading
                   + "   v_TextureCoord = a_TextureCoord; \n"     // Pass the texture coordinate through to the fragment shader. It will be interpolated across the triangle.                                                                              
                   + "   gl_Position = u_MVPMatrix   \n"     // gl_Position is a special variable used to store the final position.
                   + "                 * a_Position; \n"     // Multiply the vertex by the matrix to get the final point in normalized screen coordinates.			                                            			 
@@ -427,7 +430,7 @@ namespace OpenGLES_lessons_template
               + "void main()                    \n"     // The entry point for our fragment shader.
               + "{                              \n"
               + "   gl_FragColor = texture2D(u_Texture, v_TextureCoord) * v_Color;  \n"   // Pass the color directly through the pipeline.		                
-            //  + "   gl_FragColor = texture2D(u_Texture, v_TextureCoord);  \n"   // Pass the color directly through the pipeline.		                
+              //+ "   gl_FragColor = v_Color;  \n"   // Pass the color directly through the pipeline.		                
               + "}                              \n";
 
             int vertexShaderHandle = GLES20.GlCreateShader(GLES20.GlVertexShader);
@@ -554,15 +557,28 @@ namespace OpenGLES_lessons_template
         {
 
             GLES20.GlClear(GLES20.GlColorBufferBit | GLES20.GlDepthBufferBit);
-
             // Draw the triangle facing straight on.
             angleInDegrees += 0.1f;
+            lb += 0.0001f;
+            if (lb > 0.05f) lb = 0.001f;
+
+            for (int x = -2; x < 3; x++)
+            {
+                for (int z = -2; z < 3; z++)
+                { 
+                    DrawObject(x * 10.0f, 0.0f, z * 10.0f);
+            }
+            }
+        }
+
+        private void DrawObject(float x, float y, float z)
+        {
             //Prepare model transformation matrix
             float[] mModelMatrix = new float[16];
-            Matrix.SetIdentityM(mModelMatrix, 0);            
+            Matrix.SetIdentityM(mModelMatrix, 0);
+            //Matrix.ScaleM(mModelMatrix, 0, 0.2f, 0.2f, 0.2f);
             Matrix.RotateM(mModelMatrix, 0, angleInDegrees, 0.0f, 0.4f, 0.0f);
-            Matrix.TranslateM(mModelMatrix, 0, 0.0f, -2.4f, 0.0f);
-            Matrix.ScaleM(mModelMatrix, 0, 0.02f, 0.02f, 0.02f);
+            Matrix.TranslateM(mModelMatrix, 0, x, y + -2.5f, z);
 
             //Draw with VBO 
             GLES20.GlBindBuffer(GLES20.GlArrayBuffer, VBOBuffers[0]);
@@ -590,7 +606,7 @@ namespace OpenGLES_lessons_template
 
             //light position
             // GLES20.GlUniform3f(mLightPos, 0.0f, 0.0f, angleInDegrees);
-            GLES20.GlUniform3f(mLightPos, 0.0f, 0.0f, 0.0f);
+            GLES20.GlUniform4f(mLightPos, 0.0f, 6.0f - 2.5f, 0.0f, 0.001f);
 
             // This multiplies the view matrix by the model matrix, and stores the result in the MVP matrix
             // (which currently contains model * view).            
@@ -607,7 +623,6 @@ namespace OpenGLES_lessons_template
             GLES20.GlUniformMatrix4fv(mMVPMatrixHandle, 1, false, _mMVPMatrix, 0);
 
             GLES20.GlDrawArrays(GLES20.GlTriangles, 0, objectSize); //Cube has 12 triagle faces each face has 3 coord
-
 
         }
     }
