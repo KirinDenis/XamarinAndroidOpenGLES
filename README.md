@@ -12,6 +12,8 @@ https://www.youtube.com/watch?v=NnuZK5Qh-WE&list=PLIAm4wLW4KD9DEvxQglY2JMr9pt3H-
 
 - lessonNNN исходные коды для роликов на Youtube канале с соответствующими названиями.
 
+- SGWW пример применения OpenGL ES 2.0 в реальном мобилкьном приложение, основан на материалах из Lessons
+
 - HomeworkNNN исходные коды домашних заданий.
 
 - Models – 3D модели Blender и .OBJ использованные в уроках.
