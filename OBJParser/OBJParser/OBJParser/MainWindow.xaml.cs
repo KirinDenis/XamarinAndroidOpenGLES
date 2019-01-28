@@ -41,9 +41,10 @@ namespace OBJParser
                 {
 
                     List<byte[]> objectData = ParseObj.ParsedObject(pathFile);
-                    File.WriteAllBytes(pathFolder+"\\"+nameFile+"_objvertex", objectData[0]);
-                    File.WriteAllBytes(pathFolder + "\\"+nameFile+"_objtexture", objectData[1]);
-                    File.WriteAllBytes(pathFolder + "\\"+nameFile+"_objnormal", objectData[2]);
+                    //Android RAW resources like lowercase file names with out extention
+                    File.WriteAllBytes(pathFolder+"\\"+nameFile.ToLower()+"_objvertex", objectData[0]);
+                    File.WriteAllBytes(pathFolder + "\\"+nameFile.ToLower() + "_objtexture", objectData[1]);
+                    File.WriteAllBytes(pathFolder + "\\"+nameFile.ToLower() + "_objnormal", objectData[2]);
 
                     logTextBlock.Text += "Creating files in folder " + pathFolder + " is complited.\n";
                 }
