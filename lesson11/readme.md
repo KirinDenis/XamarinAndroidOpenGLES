@@ -16,3 +16,10 @@
 Полезные шпаргалки:
 https://docs.google.com/document/d/1LVbNnjfq0ON7eN2l8yvKyEEtGIuzzx53iMB9KYTP-5Q/edit
 
+Video:
+
+https://youtu.be/ktY2h2R2dxQ
+
+https://youtu.be/aFAXJ0zOows
+
+https://youtu.be/slW1rl-U-YI
