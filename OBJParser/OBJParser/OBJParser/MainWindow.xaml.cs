@@ -57,6 +57,7 @@ namespace OBJParser
 
             else
             {
+                
                 logTextBlock.Text += "Please, chose obj file.\n";
             }
         }

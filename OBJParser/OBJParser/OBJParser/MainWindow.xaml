@@ -19,7 +19,7 @@
         </StackPanel>
         <Button Name="openFileButton" Grid.Row="1" Margin="0,10" Content="Click here to select .OBJ file and parse..." Click="OpenFile_Click" Background="DarkGray" />
         <ScrollViewer Grid.Row="2">
-        <TextBlock Name ="logTextBlock"  Text="log was here..." TextWrapping="Wrap" Foreground="#FFE2E2E2"/>
+        <TextBlock Name="logTextBlock"  Text="log was here..." TextWrapping="Wrap" Foreground="#FFE2E2E2"/>
         </ScrollViewer>
 
     </Grid>
