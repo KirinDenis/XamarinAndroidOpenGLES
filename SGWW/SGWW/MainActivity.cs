@@ -3,6 +3,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Opengl;
+using Android.Views;
 
 /// <summary>
 /// Android Xamarin OpenGL ES lessons:
@@ -11,9 +12,14 @@ using Android.Opengl;
 namespace OpenGLES_lessons_template
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    public class MainActivity : AppCompatActivity, View.IOnTouchListener
     {
         private GLSurfaceView _GLSurfaceView;
+        private DrawCanvas canvas;
+        private Renderer renderer;
+
+        private float x = -1;
+        private float y = -1;
 
         /// <summary>
         /// See Android App lifecycle diagram to know when Android call this event hadler 
@@ -29,13 +35,54 @@ namespace OpenGLES_lessons_template
             _GLSurfaceView = new GLSurfaceView(this);
             _GLSurfaceView.SetEGLContextClientVersion(2);
             
-            Renderer renderer = new Renderer(this);
+            renderer = new Renderer(this);
             _GLSurfaceView.SetRenderer(renderer);
 
             RelativeLayout sceneHolder = (RelativeLayout)this.FindViewById(Resource.Id.sceneHolder);
             sceneHolder.AddView(_GLSurfaceView);
 
+            canvas = new DrawCanvas(this);
+            canvas.render = renderer;
+            canvas.SetOnTouchListener(this);
+
+
+            sceneHolder.AddView(canvas);
+
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Interval = 10;
+            timer.Elapsed += OnTimedEvent;
+            timer.Enabled = true;
+
         }
+
+        public bool OnTouch(View v, MotionEvent e)
+        {
+            switch (e.Action)
+            {
+                case MotionEventActions.Down:
+                    x = -1;
+                    y = -1;
+                    break;
+                case MotionEventActions.Move:
+                    if (x != -1)
+                    {
+                        renderer.eyeX -= (x-e.RawX) / 50;
+                        renderer.eyeY -= (y-e.RawY) / 50;
+                    }
+
+                    x = e.RawX;
+                    y = e.RawY;
+
+                    break;
+            }
+            return true;
+        }
+
+        private void OnTimedEvent(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            canvas.Invalidate();
+        }
+
 
         protected override void OnResume()
         {         

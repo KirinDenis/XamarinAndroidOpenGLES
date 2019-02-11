@@ -58,6 +58,7 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawCanvas.cs" />
     <Compile Include="Engine\GLObject.cs" />
     <Compile Include="Engine\Shader.cs" />
     <Compile Include="Engine\Texture.cs" />

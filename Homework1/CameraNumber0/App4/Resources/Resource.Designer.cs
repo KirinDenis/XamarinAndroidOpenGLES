@@ -3152,10 +3152,13 @@ namespace App4
 		{
 			
 			// aapt resource value: 0x7f070000
-			public const int testmodel_objvertex = 2131165184;
+			public const int tank_objvertex = 2131165184;
 			
 			// aapt resource value: 0x7f070001
-			public const int tor_objvertex = 2131165185;
+			public const int testmodel_objvertex = 2131165185;
+			
+			// aapt resource value: 0x7f070002
+			public const int tor_objvertex = 2131165186;
 			
 			static Raw()
 			{

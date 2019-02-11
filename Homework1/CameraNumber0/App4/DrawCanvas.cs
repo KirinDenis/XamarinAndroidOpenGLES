@@ -77,28 +77,28 @@ namespace App4
             };
             */
         //empty buffer for loading from file 
-        float[] vertex;
+        float[] vertex; //x,y,z,w
 
         public DrawCanvas(Context context) : base(context)
         {
             long size;
             float[] vertex3; //temporary array for object format x,y,z to be converted to x,y,z,w
             // Vertex
-            Stream fileIn = context.Resources.OpenRawResource(Resource.Raw.tor_objvertex) as Stream;
+            Stream fileIn = context.Resources.OpenRawResource(Resource.Raw.tank_objvertex) as Stream;
             MemoryStream m = new MemoryStream();
             fileIn.CopyTo(m);
             size = m.Length;
-            vertex3 = new float[size / 4];            
+            vertex3 = new float[size / 4];
             System.Buffer.BlockCopy(m.ToArray(), 0, vertex3, 0, (int)size);
 
             //convert x,y,z to x,y,z,w
             vertex = new float[vertex3.Length + vertex3.Length / 3];
 
             int v3counter = 0;
-            for (int i = 0; i < vertex.Length; i+=4)
+            for (int i = 0; i < vertex.Length; i += 4)
             {
                 vertex[i] = vertex3[v3counter]; //x
-                vertex[i+1] = vertex3[v3counter + 1]; //y
+                vertex[i + 1] = vertex3[v3counter + 1]; //y
                 vertex[i + 2] = vertex3[v3counter + 2]; //z 
                 vertex[i + 3] = 1; //w
 
@@ -141,12 +141,12 @@ namespace App4
             Paint paint = new Paint();
             paint.Color = Color.Red;
 
-            a++;
+            a += 1;
 
             // Rotation by coords with use matrix 
             float[] translateMatrix = new float[16]; //Matrxi 3x3            
             Android.Opengl.Matrix.SetIdentityM(translateMatrix, 0);
-            Android.Opengl.Matrix.TranslateM(translateMatrix, 0,  0, 0, 350);
+            Android.Opengl.Matrix.TranslateM(translateMatrix, 0, 0, 0, 450);
             Android.Opengl.Matrix.RotateM(translateMatrix, 0, a, 1, 1, 1);
             Android.Opengl.Matrix.ScaleM(translateMatrix, 0, 120, 120, 120);
 
@@ -154,7 +154,7 @@ namespace App4
 
             //transform all object vertexes by translation matrix
             //vertex shadex emulation
-            for (int i = 0; i < vertex.Length; i += 4)            
+            for (int i = 0; i < vertex.Length; i += 4) //x,y,z,w
             {
                 Android.Opengl.Matrix.MultiplyMV(gl_Position, i, translateMatrix, 0, vertex, i);
             }
@@ -167,12 +167,12 @@ namespace App4
 
             //aspect 
             float w = 1400;
-            float h = 800;            
+            float h = 800;
             paint.Color = Color.Black;
             canvas.DrawRect(0, 0, w, h, paint);
 
-
-            for (int i = 0; i < vertex.Length; i += 4)            
+            int faceStrip = 4;
+            for (int i = 0; i < vertex.Length; i += 4)
             {
 
                 //Calculate camera screen coords
@@ -183,12 +183,12 @@ namespace App4
                 //screen x,z and y,z               
                 float cameraZ = 250;
                 //First y, z where z = 50, find y - step by step CODEE
-                float cosA = gl_Position[i + 2] / (float)(Math.Sqrt(gl_Position[i + 1] * gl_Position[i + 1] + gl_Position[i + 2] + gl_Position[i + 2]));
-                float sinA = gl_Position[i + 1] / (float)(Math.Sqrt(gl_Position[i + 1] * gl_Position[i + 1] + gl_Position[i + 2] + gl_Position[i + 2]));
-                float screenY = cameraZ / cosA * sinA + h / 2;
+                float cosA = gl_Position[i + 2] / (float)(Math.Sqrt(gl_Position[i + 1] * gl_Position[i + 1] + gl_Position[i + 2] * gl_Position[i + 2]));
+                float sinA = gl_Position[i + 1] / (float)(Math.Sqrt(gl_Position[i + 1] * gl_Position[i + 1] + gl_Position[i + 2] * gl_Position[i + 2]));
+                float screenY = h - (cameraZ / cosA * sinA + h / 2);
                 //Next x, z
-                cosA = gl_Position[i + 2] / (float)(Math.Sqrt(gl_Position[i + 0] * gl_Position[i + 0] + gl_Position[i + 2] + gl_Position[i + 2]));
-                sinA = gl_Position[i + 0] / (float)(Math.Sqrt(gl_Position[i + 0] * gl_Position[i + 0] + gl_Position[i + 2] + gl_Position[i + 2]));
+                cosA = gl_Position[i + 2] / (float)(Math.Sqrt(gl_Position[i + 0] * gl_Position[i + 0] + gl_Position[i + 2] * gl_Position[i + 2]));
+                sinA = gl_Position[i + 0] / (float)(Math.Sqrt(gl_Position[i + 0] * gl_Position[i + 0] + gl_Position[i + 2] * gl_Position[i + 2]));
                 float screenX = cameraZ / cosA * sinA + w / 2;
 
                 //Surface draw 
@@ -199,12 +199,12 @@ namespace App4
                 if (i != 0) //skip first
                 {
 
-                    paint.Color = Color.Red;
-                    canvas.DrawLine(screenX-300, screenY, prevX - 300, prevY, paint);
-                    paint.Color = Color.Green;
-                    canvas.DrawLine(screenX, screenY, prevX, prevY, paint);
-                    paint.Color = Color.Blue;
-                    canvas.DrawLine(screenX+300, screenY + 1, prevX +300, prevY + 1, paint);
+                    //paint.Color = Color.Red;
+                    //canvas.DrawLine(screenX - 300, screenY, prevX - 300, prevY, paint);
+                   // paint.Color = Color.Green;
+                   // canvas.DrawLine(screenX, screenY, prevX, prevY, paint);
+                  //  paint.Color = Color.Blue;
+                   // canvas.DrawLine(screenX + 300, screenY + 1, prevX + 300, prevY + 1, paint);
 
                 }
                 else
@@ -214,10 +214,11 @@ namespace App4
                 }
                 prevX = screenX;
                 prevY = screenY;
+
             }
 
-            paint.Color = Color.Green;
-            canvas.DrawLine(prevX, prevY, firstX, firstY, paint);
+            //   paint.Color = Color.Green;
+            //  canvas.DrawLine(prevX, prevY, firstX, firstY, paint);
 
 
         }

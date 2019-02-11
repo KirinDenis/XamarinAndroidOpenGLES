@@ -19,7 +19,7 @@ namespace OpenGLES_lessons_template
     /// https://free3d.com/3d-model/old-house-2-96599.html
     ///https://free3d.com/user/tharidu
     /// </summary>
-    class Renderer : Java.Lang.Object, GLSurfaceView.IRenderer
+    public class Renderer : Java.Lang.Object, GLSurfaceView.IRenderer
     {
         /// <summary>
         /// Android activity Context context
@@ -45,14 +45,14 @@ namespace OpenGLES_lessons_template
         private float angleInDegrees = -2.0f;
 
         // Position the eye behind the origin.
-        private float eyeX = 0.0f;
-        private float eyeY = 0.0f;
-        private float eyeZ = 7.5f;
+        public float eyeX = 0.0f;
+        public float eyeY = 0.0f;
+        public float eyeZ = -4.5f;
 
         // We are looking toward the distance
-        private float lookX = 0.0f;
-        private float lookY = 0.0f;
-        private float lookZ = -7.0f;
+        public float lookX = 0.0f;
+        public float lookY = 0.0f;
+        public float lookZ = 10.0f;
 
         // Set our up vector. This is where our head would be pointing were we holding the camera.
         private float upX = 0.0f;
@@ -69,27 +69,12 @@ namespace OpenGLES_lessons_template
         public void OnSurfaceCreated(IGL10 gl, Javax.Microedition.Khronos.Egl.EGLConfig config)
         {
 
-            for (int i = 0; i < 20; i++)
-            {
-                glObjects.Add(new GLObject(context, "vertex_shader", "fragment_shader", "object1_objvertex", "oldhouse_objnormal", "oldhouse_objtexture", "body"));
-                glObjects.Add(new GLObject(context, "vertex_shader", "fragment_shader", "oldhouse_objvertex", "oldhouse_objnormal", "oldhouse_objtexture", "body"));
-            }
+            glObjects.Add(new GLObject(context, "vertex_shader", "fragment_shader", "oldhouse_objvertex", "oldhouse_objnormal", "oldhouse_objtexture", "body"));
 
-            Random r = new Random(0xFFFF);
-            foreach (GLObject glObject in glObjects)
-            {
-                glObject.x = r.Next(20);
-                glObject.y = -2.5f;
-                glObject.z = r.Next(20);
-                
-            }
+            Matrix.SetLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
 
-
-
-                //Ask android to run RAM garbage cleaner
-                System.GC.Collect();
-
-
+            //Ask android to run RAM garbage cleaner
+            System.GC.Collect();
 
             //Setup OpenGL ES 
             GLES20.GlClearColor(0.9f, 0.9f, 0.9f, 0.9f);
@@ -121,21 +106,9 @@ namespace OpenGLES_lessons_template
             // NOTE: In OpenGL 1, a ModelView matrix is used, which is a combination of a model and
             // view matrix. In OpenGL 2, we can keep track of these matrices separately if we choose.
 
-            eyeZ -= 0.01f;
-            lookZ -= 0.01f;
-
-            eyeX += 0.01f;
-            lookX += 0.01f;
-
             Matrix.SetLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
 
-
-            foreach (GLObject glObject in glObjects)
-            {                
-                glObject.DrawFrame(gl, mViewMatrix, mProjectionMatrix);
-            }
-
-
+            glObjects[0].DrawFrame(gl, mViewMatrix, mProjectionMatrix);
 
         }
 
