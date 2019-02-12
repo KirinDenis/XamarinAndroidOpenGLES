@@ -9,14 +9,14 @@ using Android.Views;
 /// Android Xamarin OpenGL ES lessons:
 /// https://github.com/KirinDenis/XamarinAndroidOpenGLES
 /// </summary>
-namespace OpenGLES_lessons_template
+namespace SGWW
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, View.IOnTouchListener
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = false)]
+    public class StasActivity : AppCompatActivity, View.IOnTouchListener
     {
         private GLSurfaceView _GLSurfaceView;
-        private DrawCanvas canvas;
-        private Renderer renderer;
+        private StasView stasView;
+        private StasRenderer renderer;
 
         private float x = -1;
         private float y = -1;
@@ -30,29 +30,27 @@ namespace OpenGLES_lessons_template
         {
             base.OnCreate(savedInstanceState);
             //Set Resources/layout/activity_main.axml as this activity content view (see android:id="@+id/mainlayout")
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.activity_stas);
 
             _GLSurfaceView = new GLSurfaceView(this);
             _GLSurfaceView.SetEGLContextClientVersion(2);
             
-            renderer = new Renderer(this);
+            renderer = new StasRenderer(this);
             _GLSurfaceView.SetRenderer(renderer);
 
             RelativeLayout sceneHolder = (RelativeLayout)this.FindViewById(Resource.Id.sceneHolder);
             sceneHolder.AddView(_GLSurfaceView);
 
-            canvas = new DrawCanvas(this);
-            canvas.render = renderer;
-            canvas.SetOnTouchListener(this);
+            stasView = new StasView(this);
+            stasView.render = renderer;
+            stasView.SetOnTouchListener(this);
 
-
-            sceneHolder.AddView(canvas);
+            sceneHolder.AddView(stasView);
 
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Interval = 10;
             timer.Elapsed += OnTimedEvent;
             timer.Enabled = true;
-
         }
 
         public bool OnTouch(View v, MotionEvent e)
@@ -80,9 +78,8 @@ namespace OpenGLES_lessons_template
 
         private void OnTimedEvent(object sender, System.Timers.ElapsedEventArgs e)
         {
-            canvas.Invalidate();
+            stasView.Invalidate();
         }
-
 
         protected override void OnResume()
         {         

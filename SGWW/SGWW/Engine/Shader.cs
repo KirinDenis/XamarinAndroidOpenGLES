@@ -12,7 +12,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace OpenGLES_lessons_template
+namespace SGWW
 {
     public class Shader
     {

@@ -1,25 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using Android.Opengl;
 using Android.Content;
-using Android.Opengl;
-using Java.IO;
-using Java.Nio;
+using System.Collections.Generic;
 using Javax.Microedition.Khronos.Opengles;
 
-namespace OpenGLES_lessons_template
+namespace SGWW
 {
-    /// <summary>
-    /// This example Java source from https://github.com/learnopengles/Learn-OpenGLES-Tutorials/tree/master/android/AndroidOpenGLESLessons/app/src/main/java/com/learnopengles/android/lesson1
-    /// lesson4 Java source code is used https://github.com/learnopengles/Learn-OpenGLES-Tutorials/blob/master/android/AndroidOpenGLESLessons/app/src/main/java/com/learnopengles/android/lesson4/LessonFourRenderer.java
-    /// lesson RU description http://dedfox.com/izuchaem-opengl-es2-pod-android-urok-3-delaem-osveshhenie-realistichnee-po-tochechnyj-raschet-osveshheniya/
-    /// used model https://free3d.com/3d-model/house-43064.html
-    /// https://free3d.com/user/blenderister
     /// Old house model
     /// https://free3d.com/3d-model/old-house-2-96599.html
-    ///https://free3d.com/user/tharidu
+    /// https://free3d.com/user/tharidu
     /// </summary>
-    public class Renderer : Java.Lang.Object, GLSurfaceView.IRenderer
+    public class VitalyRenderer : Java.Lang.Object, GLSurfaceView.IRenderer
     {
         /// <summary>
         /// Android activity Context context
@@ -30,19 +20,10 @@ namespace OpenGLES_lessons_template
         private float[] mProjectionMatrix = new float[16];
         private float[] mViewMatrix = new float[16];
 
+        /// <summary>
+        /// Scene objects list
+        /// </summary>
         private List<GLObject> glObjects = new List<GLObject>();
-
-
-        // Size of the position data in elements. 
-        private int mPositionDataSize = 3;
-        // How many bytes per float. 
-        private const int mBytesPerFloat = 4;
-        // Size of the color data in elements. 
-        private int mColorDataSize = 4;
-
-        private float lb = 0.001f;
-
-        private float angleInDegrees = -2.0f;
 
         // Position the eye behind the origin.
         public float eyeX = 0.0f;
@@ -59,16 +40,13 @@ namespace OpenGLES_lessons_template
         private float upY = 1.0f;
         private float upZ = 0.0f;
 
-
-
-        public Renderer(Context context) : base()
+        public VitalyRenderer(Context context) : base()
         {
             this.context = context;
         }
 
         public void OnSurfaceCreated(IGL10 gl, Javax.Microedition.Khronos.Egl.EGLConfig config)
         {
-
             glObjects.Add(new GLObject(context, "vertex_shader", "fragment_shader", "oldhouse_objvertex", "oldhouse_objnormal", "oldhouse_objtexture", "body"));
 
             Matrix.SetLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
@@ -79,9 +57,8 @@ namespace OpenGLES_lessons_template
             //Setup OpenGL ES 
             GLES20.GlClearColor(0.9f, 0.9f, 0.9f, 0.9f);
             GLES20.GlEnable(GLES20.GlDepthTest); //uncoment if needs enabled dpeth test
-                                                 //  GLES20.GlEnable(2884); // GlCullFace == 2884 see OpenGL documentation to this constant value  
-                                                 //  GLES20.GlCullFace(GLES20.GlFront);
-
+            //  GLES20.GlEnable(2884); // GlCullFace == 2884 see OpenGL documentation to this constant value  
+            //  GLES20.GlCullFace(GLES20.GlFront);
         }
 
         public void OnSurfaceChanged(IGL10 gl, int width, int height)
@@ -99,18 +76,14 @@ namespace OpenGLES_lessons_template
 
         public void OnDrawFrame(IGL10 gl)
         {
-
             GLES20.GlClear(GLES20.GlColorBufferBit | GLES20.GlDepthBufferBit);
 
             // Set the view matrix. This matrix can be said to represent the camera position.
             // NOTE: In OpenGL 1, a ModelView matrix is used, which is a combination of a model and
             // view matrix. In OpenGL 2, we can keep track of these matrices separately if we choose.
-
             Matrix.SetLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
 
             glObjects[0].DrawFrame(gl, mViewMatrix, mProjectionMatrix);
-
         }
-
     }
 }

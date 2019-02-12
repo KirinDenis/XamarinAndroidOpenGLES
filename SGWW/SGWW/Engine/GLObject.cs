@@ -12,7 +12,7 @@ using Android.Views;
 using Android.Widget;
 using Javax.Microedition.Khronos.Opengles;
 
-namespace OpenGLES_lessons_template
+namespace SGWW
 {
     public class GLObject
     {

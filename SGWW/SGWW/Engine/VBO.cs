@@ -13,7 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Java.Nio;
 
-namespace OpenGLES_lessons_template
+namespace SGWW
 {
     public class VBO
     {
