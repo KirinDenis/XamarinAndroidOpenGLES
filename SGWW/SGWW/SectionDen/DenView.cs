@@ -13,6 +13,7 @@ namespace SGWW
     public class DenView : View
     {
         public DenRenderer render;
+        private Boolean flag = false;
 
         public DenView(Context context) : base(context)
         {
@@ -22,11 +23,16 @@ namespace SGWW
         {
             base.OnDraw(canvas);
 
+            flag = !flag;
+
             Paint paint = new Paint();
-            paint.Color = Color.Black;
+            if (flag) paint.Color = Color.Red;
+             else
+                paint.Color = Color.Yellow;
+
             paint.TextSize = 34;
 
-            canvas.DrawText("Den view section", 0, 50, paint);
+            canvas.DrawText("Attention broken glass on the first floor (south side of the building)", 0, 50, paint);
         }
     }
 }

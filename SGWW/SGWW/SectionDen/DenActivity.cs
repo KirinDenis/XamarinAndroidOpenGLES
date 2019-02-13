@@ -48,7 +48,7 @@ namespace SGWW
             sceneHolder.AddView(denView);
 
             System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 10;
+            timer.Interval = 500;
             timer.Elapsed += OnTimedEvent;
             timer.Enabled = true;
         }

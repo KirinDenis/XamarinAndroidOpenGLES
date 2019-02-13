@@ -20,6 +20,7 @@ namespace SGWW
 
         public Texture(Context context, string fileName)
         {
+            if (string.IsNullOrEmpty(fileName)) return;
             GLES20.GlGenTextures(1, textureHandle, 0); //init 1 texture storage handle 
             if (textureHandle[0] != 0)
             {

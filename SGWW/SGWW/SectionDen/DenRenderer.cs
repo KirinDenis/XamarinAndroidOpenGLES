@@ -40,6 +40,8 @@ namespace SGWW
         private float upY = 1.0f;
         private float upZ = 0.0f;
 
+        private float alpha = 0;
+
         public DenRenderer(Context context) : base()
         {
             this.context = context;
@@ -47,7 +49,8 @@ namespace SGWW
 
         public void OnSurfaceCreated(IGL10 gl, Javax.Microedition.Khronos.Egl.EGLConfig config)
         {
-            glObjects.Add(new GLObject(context, "vertex_shader", "fragment_shader", "oldhouse_objvertex", "oldhouse_objnormal", "oldhouse_objtexture", "body"));
+            glObjects.Add(new GLObject(context, "den_vertex_shader", "den_fragment_shader", "den_house2_objvertex", "den_house2_objnormal", "den_house2_objtexture", "den_housetextutre"));
+            glObjects.Add(new GLObject(context, "den_glass_vertex_shader", "den_glass_fragment_shader", "den_glass_objvertex", "den_glass_objnormal", "den_glass_objtexture", string.Empty));
 
             Matrix.SetLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
 
@@ -55,6 +58,7 @@ namespace SGWW
             System.GC.Collect();
 
             //Setup OpenGL ES 
+            
             GLES20.GlClearColor(0.9f, 0.9f, 0.9f, 0.9f);
             GLES20.GlEnable(GLES20.GlDepthTest); //uncoment if needs enabled dpeth test
             //  GLES20.GlEnable(2884); // GlCullFace == 2884 see OpenGL documentation to this constant value  
@@ -78,12 +82,27 @@ namespace SGWW
         {
             GLES20.GlClear(GLES20.GlColorBufferBit | GLES20.GlDepthBufferBit);
 
+
             // Set the view matrix. This matrix can be said to represent the camera position.
             // NOTE: In OpenGL 1, a ModelView matrix is used, which is a combination of a model and
             // view matrix. In OpenGL 2, we can keep track of these matrices separately if we choose.
             Matrix.SetLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
 
             glObjects[0].DrawFrame(gl, mViewMatrix, mProjectionMatrix);
+
+            //Glass code with enable blend
+            gl.GlEnable(GL10.GlBlend);
+            gl.GlBlendFunc(GL10.GlSrcAlpha, GL10.GlOneMinusSrcAlpha);
+
+            glObjects[1].lx = 0.9f;
+            glObjects[1].ly = 0.0f;
+            glObjects[1].lz = 0.0f;
+            glObjects[1].lw += 0.01f;
+            if (glObjects[1].lw > 0.5) glObjects[1].lw = 0;
+
+            glObjects[1].DrawFrame(gl, mViewMatrix, mProjectionMatrix);
+            
+            gl.GlDisable(GL10.GlBlend);
         }
     }
 }

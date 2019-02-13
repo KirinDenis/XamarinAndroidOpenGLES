@@ -100,6 +100,12 @@
     <AndroidResource Include="Resources\raw\oldhouse_objnormal" />
     <AndroidResource Include="Resources\raw\oldhouse_objtexture" />
     <AndroidResource Include="Resources\raw\oldhouse_objvertex" />
+    <AndroidResource Include="Resources\raw\den_house2_objnormal" />
+    <AndroidResource Include="Resources\raw\den_house2_objtexture" />
+    <AndroidResource Include="Resources\raw\den_house2_objvertex" />
+    <AndroidResource Include="Resources\raw\den_glass_objnormal" />
+    <AndroidResource Include="Resources\raw\den_glass_objtexture" />
+    <AndroidResource Include="Resources\raw\den_glass_objvertex" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_public.axml">
@@ -183,6 +189,33 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\sgwwlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\den_housetextutre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\den_fragment_shader.txt">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\den_vertex_shader.txt">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\den_glass_fragment_shader.txt">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\den_glass_vertex_shader.txt">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
