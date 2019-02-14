@@ -39,7 +39,7 @@ namespace SGWW
             _GLSurfaceView.SetRenderer(renderer);
 
             RelativeLayout sceneHolder = (RelativeLayout)this.FindViewById(Resource.Id.sceneHolder);
-            sceneHolder.AddView(_GLSurfaceView);
+            //sceneHolder.AddView(_GLSurfaceView);
 
             vladimirView = new VladimirView(this);
             vladimirView.render = renderer;

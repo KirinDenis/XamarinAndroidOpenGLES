@@ -1,0 +1,2 @@
+android.app.Application
+OpenGLES_lessons_template.OpenGLES_lessons_template
