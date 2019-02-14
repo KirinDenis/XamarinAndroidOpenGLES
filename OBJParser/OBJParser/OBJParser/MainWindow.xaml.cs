@@ -88,6 +88,7 @@ namespace OBJParser
                 OpenFile_Click(null, null);
             }
             else
+            if (e.Key == Key.Escape)            
             {
                 Close();
             }

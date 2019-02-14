@@ -30,21 +30,47 @@ namespace SGWW
         public float ax = 1.0f;
         public float scale = 1.0f;
 
+        /// <summary>
+        /// temporary light position
+        /// </summary>
+        public float lx = 0.65f;
+        public float ly = 1.0f;
+        public float lz = -3.0f;
+        public float lw = 0.01f;
+
+        /// <summary>
+        /// Object init on create, loding and compile shaders, VBOs and textures from resources
+        /// </summary>
+        /// <param name="context">current activity Context</param>
+        /// <param name="vertextShader">raw/shader file name</param>
+        /// <param name="fragmentShader">raw/shader file name</param>
+        /// <param name="vertexFile">raw/vertex file name_objvertex</param>
+        /// <param name="normalFile">raw/normal file name_objnormal</param>
+        /// <param name="textureFile">raw/UVMap file name_objtexture</param>
+        /// <param name="textureImage">drawable/file name (use .PNG files with alpha chanel is allowed)</param>
         public GLObject(Context context, string vertextShader, string fragmentShader, string vertexFile, string normalFile, string textureFile, string textureImage)
         {
+            //Loading vertex and fragment shader source codes from resource files, than compile and link it
             shader = new Shader(context, vertextShader, fragmentShader);
             compileResult = shader.Compile();
-
+            //Loading vertexes from resource file to VBO
             vertexVBO = new VBO(context, vertexFile);
-            normalVBO = new VBO(context, normalFile);
+            //Loading UVMap from resource file to VBO
             textureVBO = new VBO(context, textureFile);
+            //Loading normales from resource file to VBO
+            normalVBO = new VBO(context, normalFile);
+            //Loading texture image file
             texture = new Texture(context, textureImage);
-
             //Ask android to run RAM garbage cleaner
             System.GC.Collect();
-
         }
 
+        /// <summary>
+        /// This method is called from Renderer when OpenGL ready to draw scene 
+        /// </summary>
+        /// <param name="gl">IGL10 access object pointer from orign OpenGL.OnDraw(IGL10 gl)</param>
+        /// <param name="mViewMatrix">Camere View matrix</param>
+        /// <param name="mProjectionMatrix">Camera Projection matrix</param>
         public void DrawFrame(IGL10 gl, float[] mViewMatrix, float[] mProjectionMatrix)
         {
 
@@ -79,7 +105,7 @@ namespace SGWW
             //END OF Draw with VBO 
 
             //light position            
-            GLES20.GlUniform4f(shader.mLightPos, 0.0f, 6.0f - 2.5f, 0.0f, 0.001f);
+            GLES20.GlUniform4f(shader.mLightPos, lx, ly, lz, lw);
 
             // This multiplies the view matrix by the model matrix, and stores the result in the MVP matrix
             // (which currently contains model * view).            
@@ -96,6 +122,7 @@ namespace SGWW
 
             GLES20.GlUniformMatrix4fv(shader.mMVPMatrixHandle, 1, false, _mMVPMatrix, 0);
             GLES20.GlDrawArrays(GLES20.GlTriangles, 0, vertexVBO.objectSize); //Cube has 12 triagle faces each face has 3 coord
+            
 
             GLES20.GlUseProgram(0);
         }
