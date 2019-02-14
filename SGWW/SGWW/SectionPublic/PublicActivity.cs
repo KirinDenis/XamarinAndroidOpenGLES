@@ -64,8 +64,8 @@ namespace SGWW
                 case MotionEventActions.Move:
                     if (x != -1)
                     {
-                        renderer.eyeX -= (x-e.RawX) / 50;
-                        renderer.eyeY -= (y-e.RawY) / 50;
+                        renderer.camera.eyeX -= (x-e.RawX) / 50;
+                        renderer.camera.eyeY -= (y-e.RawY) / 50;
                     }
 
                     x = e.RawX;

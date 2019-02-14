@@ -58,9 +58,15 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Camera.cs" />
+    <Compile Include="Engine\CanvasView.cs" />
+    <Compile Include="Engine\ConsoleDrawer.cs" />
+    <Compile Include="Engine\Face.cs" />
+    <Compile Include="Engine\ObjParser.cs" />
+    <Compile Include="Engine\Renderer.cs" />
     <Compile Include="SectionDen\DenActivity.cs" />
+    <Compile Include="SectionDen\DenGlassObject.cs" />
     <Compile Include="SectionDen\DenRenderer.cs" />
-    <Compile Include="SectionDen\DenView.cs" />
     <Compile Include="SectionPublic\PublicView.cs" />
     <Compile Include="Engine\GLObject.cs" />
     <Compile Include="Engine\Shader.cs" />
@@ -103,9 +109,7 @@
     <AndroidResource Include="Resources\raw\den_house2_objnormal" />
     <AndroidResource Include="Resources\raw\den_house2_objtexture" />
     <AndroidResource Include="Resources\raw\den_house2_objvertex" />
-    <AndroidResource Include="Resources\raw\den_glass_objnormal" />
-    <AndroidResource Include="Resources\raw\den_glass_objtexture" />
-    <AndroidResource Include="Resources\raw\den_glass_objvertex" />
+    <AndroidResource Include="Resources\raw\den_glass.obj" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_public.axml">

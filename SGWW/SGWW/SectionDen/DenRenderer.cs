@@ -1,94 +1,102 @@
 ﻿using Android.Opengl;
 using Android.Content;
-using System.Collections.Generic;
 using Javax.Microedition.Khronos.Opengles;
+using System;
 
 namespace SGWW
 {
-    /// Old house model
-    /// https://free3d.com/3d-model/old-house-2-96599.html
-    /// https://free3d.com/user/tharidu
-    /// </summary>
-    public class DenRenderer : Java.Lang.Object, GLSurfaceView.IRenderer
+    public class DenRenderer : Renderer
     {
-        /// <summary>
-        /// Android activity Context context
-        /// </summary>
-        private Context context;
+        //For demo RUN only
+        private DateTime lastTime;
+        private Random r = new Random(0xFFFFF);
 
-        //Store the model matrix. This matrix is used to move models from object space (where each model can be thought of being located at the center of the universe) to world space.
-        private float[] mProjectionMatrix = new float[16];
-        private float[] mViewMatrix = new float[16];
-
-        /// <summary>
-        /// Scene objects list
-        /// </summary>
-        private List<GLObject> glObjects = new List<GLObject>();
-
-        // Position the eye behind the origin.
-        public float eyeX = 0.0f;
-        public float eyeY = 0.0f;
-        public float eyeZ = -4.5f;
-
-        // We are looking toward the distance
-        public float lookX = 0.0f;
-        public float lookY = 0.0f;
-        public float lookZ = 10.0f;
-
-        // Set our up vector. This is where our head would be pointing were we holding the camera.
-        private float upX = 0.0f;
-        private float upY = 1.0f;
-        private float upZ = 0.0f;
-
-        private float alpha = 0;
-
-        public DenRenderer(Context context) : base()
+        public DenRenderer(Context context) : base(context)
         {
-            this.context = context;
         }
 
-        public void OnSurfaceCreated(IGL10 gl, Javax.Microedition.Khronos.Egl.EGLConfig config)
+        public override void OnSurfaceCreated(IGL10 gl, Javax.Microedition.Khronos.Egl.EGLConfig config)
         {
-            glObjects.Add(new GLObject(context, "den_vertex_shader", "den_fragment_shader", "den_house2_objvertex", "den_house2_objnormal", "den_house2_objtexture", "den_housetextutre"));
-            glObjects.Add(new GLObject(context, "den_glass_vertex_shader", "den_glass_fragment_shader", "den_glass_objvertex", "den_glass_objnormal", "den_glass_objtexture", string.Empty));
+            base.OnSurfaceCreated(gl, config);
 
-            Matrix.SetLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
-
-            //Ask android to run RAM garbage cleaner
-            System.GC.Collect();
-
-            //Setup OpenGL ES 
-            
+            //SETUP OpenGL ES             
             GLES20.GlClearColor(0.9f, 0.9f, 0.9f, 0.9f);
             GLES20.GlEnable(GLES20.GlDepthTest); //uncoment if needs enabled dpeth test
             //  GLES20.GlEnable(2884); // GlCullFace == 2884 see OpenGL documentation to this constant value  
             //  GLES20.GlCullFace(GLES20.GlFront);
+            //ENDSETUP OpenGL ES             
+
+            //Loading objects 
+            glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house2_objvertex", "den_house2_objnormal", "den_house2_objtexture", "den_housetextutre"));
+            glObjects.Add(new DenGlassObject(this, "den_glass"));
+
+            
+            //Ask android to run RAM garbage cleaner
+            System.GC.Collect();
         }
 
-        public void OnSurfaceChanged(IGL10 gl, int width, int height)
+        public override void OnSurfaceChanged(IGL10 gl, int width, int height)
         {
-            GLES20.GlViewport(0, 0, width, height);
-            float ratio = (float)width / height;
-            float left = -ratio;
-            float right = ratio;
-            float top = 1.0f;
-            float bottom = -1.0f;
-            float near = 1.0f;
-            float far = 100.0f;
-            Matrix.FrustumM(mProjectionMatrix, 0, left, right, bottom, top, near, far);
+            base.OnSurfaceChanged(gl, width, height);
         }
 
-        public void OnDrawFrame(IGL10 gl)
+        public override void OnDrawFrame(IGL10 gl)
         {
             GLES20.GlClear(GLES20.GlColorBufferBit | GLES20.GlDepthBufferBit);
+            
+
+            TimeSpan span = DateTime.Now - lastTime;
+            if (span.TotalMilliseconds > 500)
+            {
+                int rnd = r.Next(2000);
+
+                if (rnd < 100)
+                {
+                    canvasView.ConsoleWrite("Room 1 temperature: 24C humidity 42%", 2);
+                }
+                else
+                if (rnd < 200)
+                {
+                    canvasView.ConsoleWrite("Room 2 temperature: 27C humidity 35%", 2);
+                }
+                else
+                if (rnd < 300)
+                {
+                    canvasView.ConsoleWrite("Garage light 100lm (dark)", 0);
+                }
+                else
+                if (rnd < 400)
+                {
+                    canvasView.ConsoleWrite("Entry door 1 is oppen", 3);
+                }
+                else
+                if (rnd < 500)
+                {
+                    canvasView.ConsoleWrite("Watering plants requires attention", 1);
+                }
+                else
+                if (rnd < 600)
+                {
+                    canvasView.ConsoleWrite("Garage light On success", 2);
+                }
+                else
+                if (rnd < 700)
+                {
+                    (glObjects[1] as DenGlassObject).brocken = true;
+                }
 
 
-            // Set the view matrix. This matrix can be said to represent the camera position.
-            // NOTE: In OpenGL 1, a ModelView matrix is used, which is a combination of a model and
-            // view matrix. In OpenGL 2, we can keep track of these matrices separately if we choose.
-            Matrix.SetLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
 
-            glObjects[0].DrawFrame(gl, mViewMatrix, mProjectionMatrix);
+
+                lastTime = DateTime.Now;
+            }
+
+            base.OnDrawFrame(gl);
+
+            /*
+            camera.OnDrawFrame();
+
+            glObjects[0].DrawFrame(camera);
 
             //Glass code with enable blend
             gl.GlEnable(GL10.GlBlend);
@@ -100,9 +108,10 @@ namespace SGWW
             glObjects[1].lw += 0.01f;
             if (glObjects[1].lw > 0.5) glObjects[1].lw = 0;
 
-            glObjects[1].DrawFrame(gl, mViewMatrix, mProjectionMatrix);
+            glObjects[1].DrawFrame(camera);
             
             gl.GlDisable(GL10.GlBlend);
+            */
         }
     }
 }
