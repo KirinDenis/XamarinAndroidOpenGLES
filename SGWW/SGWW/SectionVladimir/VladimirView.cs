@@ -228,9 +228,33 @@ namespace SGWW
                 Utilits.comparing(dataDistanceAllPoints[i]);
 
 
+                canvas.DrawLine(dataDistanceAllPoints[i][0].x1 + 500, dataDistanceAllPoints[i][0].y1 + 500, dataDistanceAllPoints[i][0].x2 + 500, dataDistanceAllPoints[i][0].y2 + 500, paintPoint);
                 canvas.DrawLine(dataDistanceAllPoints[i][1].x1 + 500, dataDistanceAllPoints[i][1].y1 + 500, dataDistanceAllPoints[i][1].x2 + 500, dataDistanceAllPoints[i][1].y2 + 500, paintPoint);
                 canvas.DrawLine(dataDistanceAllPoints[i][2].x1 + 500, dataDistanceAllPoints[i][2].y1 + 500, dataDistanceAllPoints[i][2].x2 + 500, dataDistanceAllPoints[i][2].y2 + 500, paintPoint);
-                //canvas.DrawLine(dataDistanceAllPoints[i][3].x1 + 500, dataDistanceAllPoints[i][3].y1 + 500, dataDistanceAllPoints[i][3].x2 + 500, dataDistanceAllPoints[i][3].y2 + 500, paintPoint);
+                if( dataDistanceAllPoints[i][3].distance <= dataDistanceAllPoints[i][0].distance ||
+                    dataDistanceAllPoints[i][3].distance <= dataDistanceAllPoints[i][1].distance ||
+                    dataDistanceAllPoints[i][3].distance <= dataDistanceAllPoints[i][2].distance) { 
+                canvas.DrawLine(dataDistanceAllPoints[i][3].x1 + 500, dataDistanceAllPoints[i][3].y1 + 500, dataDistanceAllPoints[i][3].x2 + 500, dataDistanceAllPoints[i][3].y2 + 500, paintPoint);
+                }
+                if (dataDistanceAllPoints[i][4].distance <= dataDistanceAllPoints[i][0].distance ||
+                    dataDistanceAllPoints[i][4].distance <= dataDistanceAllPoints[i][1].distance ||
+                    dataDistanceAllPoints[i][4].distance <= dataDistanceAllPoints[i][2].distance)
+                {
+                    canvas.DrawLine(dataDistanceAllPoints[i][4].x1 + 500, dataDistanceAllPoints[i][4].y1 + 500, dataDistanceAllPoints[i][4].x2 + 500, dataDistanceAllPoints[i][4].y2 + 500, paintPoint);
+                }
+
+                if (dataDistanceAllPoints[i][5].distance <= dataDistanceAllPoints[i][0].distance ||
+                   dataDistanceAllPoints[i][5].distance <= dataDistanceAllPoints[i][1].distance ||
+                   dataDistanceAllPoints[i][5].distance <= dataDistanceAllPoints[i][2].distance)
+                {
+                    canvas.DrawLine(dataDistanceAllPoints[i][5].x1 + 500, dataDistanceAllPoints[i][5].y1 + 500, dataDistanceAllPoints[i][5].x2 + 500, dataDistanceAllPoints[i][5].y2 + 500, paintPoint);
+                }
+                if (dataDistanceAllPoints[i][6].distance <= dataDistanceAllPoints[i][0].distance ||
+                   dataDistanceAllPoints[i][6].distance <= dataDistanceAllPoints[i][1].distance ||
+                   dataDistanceAllPoints[i][6].distance <= dataDistanceAllPoints[i][2].distance)
+                {
+                    canvas.DrawLine(dataDistanceAllPoints[i][6].x1 + 500, dataDistanceAllPoints[i][6].y1 + 500, dataDistanceAllPoints[i][6].x2 + 500, dataDistanceAllPoints[i][6].y2 + 500, paintPoint);
+                }
             }
 
 
