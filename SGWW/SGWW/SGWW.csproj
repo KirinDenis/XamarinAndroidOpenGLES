@@ -85,6 +85,8 @@
     <Compile Include="SectionVitaly\VitalyActivity.cs" />
     <Compile Include="SectionVitaly\VitalyRenderer.cs" />
     <Compile Include="SectionVitaly\VitalyView.cs" />
+    <Compile Include="SectionVladimir\Distanсe.cs" />
+    <Compile Include="SectionVladimir\Utilits.cs" />
     <Compile Include="SectionVladimir\VladimirActivity.cs" />
     <Compile Include="SectionVladimir\VladimirRenderer.cs" />
     <Compile Include="SectionVladimir\VladimirView.cs" />
