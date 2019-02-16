@@ -15,7 +15,6 @@ namespace SGWW
     public class DenActivity : AppCompatActivity, View.IOnTouchListener
     {
         private GLSurfaceView _GLSurfaceView;
-        private DenView denView;
         private DenRenderer renderer;
 
         private float x = -1;
@@ -32,25 +31,18 @@ namespace SGWW
             //Set Resources/layout/activity_main.axml as this activity content view (see android:id="@+id/mainlayout")
             SetContentView(Resource.Layout.activity_den);
 
+            renderer = new DenRenderer(this);
+            renderer.canvasView.SetOnTouchListener(this);
+            
+
             _GLSurfaceView = new GLSurfaceView(this);
             _GLSurfaceView.SetEGLContextClientVersion(2);
-            
-            renderer = new DenRenderer(this);
             _GLSurfaceView.SetRenderer(renderer);
 
             RelativeLayout sceneHolder = (RelativeLayout)this.FindViewById(Resource.Id.sceneHolder);
             sceneHolder.AddView(_GLSurfaceView);
+            sceneHolder.AddView(renderer.canvasView);
 
-            denView = new DenView(this);
-            denView.render = renderer;
-            denView.SetOnTouchListener(this);
-
-            sceneHolder.AddView(denView);
-
-            System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 500;
-            timer.Elapsed += OnTimedEvent;
-            timer.Enabled = true;
         }
 
         public bool OnTouch(View v, MotionEvent e)
@@ -64,8 +56,8 @@ namespace SGWW
                 case MotionEventActions.Move:
                     if (x != -1)
                     {
-                        renderer.eyeX -= (x-e.RawX) / 50;
-                        renderer.eyeY -= (y-e.RawY) / 50;
+                        renderer.camera.eyeX -= (x-e.RawX) / 50;
+                        renderer.camera.eyeY -= (y-e.RawY) / 50;
                     }
 
                     x = e.RawX;
@@ -77,8 +69,7 @@ namespace SGWW
         }
 
         private void OnTimedEvent(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            denView.Invalidate();
+        {            
         }
 
         protected override void OnResume()
