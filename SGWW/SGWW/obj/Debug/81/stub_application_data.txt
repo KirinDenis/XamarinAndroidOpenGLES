@@ -1,2 +1,0 @@
-android.app.Application
-SGWW.x3D
