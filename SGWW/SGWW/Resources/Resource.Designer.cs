@@ -3165,31 +3165,31 @@ namespace SGWW
 		{
 			
 			// aapt resource value: 0x7f060000
-			public const int car = 2131099648;
+			public const int den_fragment_shader = 2131099648;
 			
 			// aapt resource value: 0x7f060001
-			public const int den_fragment_shader = 2131099649;
+			public const int den_glass = 2131099649;
 			
 			// aapt resource value: 0x7f060002
-			public const int den_glass = 2131099650;
+			public const int den_glass_fragment_shader = 2131099650;
 			
 			// aapt resource value: 0x7f060003
-			public const int den_glass_fragment_shader = 2131099651;
+			public const int den_glass_vertex_shader = 2131099651;
 			
 			// aapt resource value: 0x7f060004
-			public const int den_glass_vertex_shader = 2131099652;
+			public const int den_house2_objnormal = 2131099652;
 			
 			// aapt resource value: 0x7f060005
-			public const int den_house2_objnormal = 2131099653;
+			public const int den_house2_objtexture = 2131099653;
 			
 			// aapt resource value: 0x7f060006
-			public const int den_house2_objtexture = 2131099654;
+			public const int den_house2_objvertex = 2131099654;
 			
 			// aapt resource value: 0x7f060007
-			public const int den_house2_objvertex = 2131099655;
+			public const int den_vertex_shader = 2131099655;
 			
 			// aapt resource value: 0x7f060008
-			public const int den_vertex_shader = 2131099656;
+			public const int dolphin = 2131099656;
 			
 			// aapt resource value: 0x7f060009
 			public const int fragment_line_shader = 2131099657;
@@ -3219,13 +3219,16 @@ namespace SGWW
 			public const int oldhouse_objvertex = 2131099665;
 			
 			// aapt resource value: 0x7f060012
-			public const int simpleobj = 2131099666;
+			public const int one = 2131099666;
 			
 			// aapt resource value: 0x7f060013
-			public const int vertex_line_shader = 2131099667;
+			public const int simpleobj = 2131099667;
 			
 			// aapt resource value: 0x7f060014
-			public const int vertex_shader = 2131099668;
+			public const int vertex_line_shader = 2131099668;
+			
+			// aapt resource value: 0x7f060015
+			public const int vertex_shader = 2131099669;
 			
 			static Raw()
 			{

@@ -64,7 +64,7 @@ namespace SGWW
 
             ObjParser model3D = new ObjParser();
 
-            List<byte[]> test1 = model3D.ParsedObject(context, "car");
+            List<byte[]> test1 = model3D.ParsedObject(context, "one");
                         
             float[] floatArray = new float[test1[0].Length / 4];
             System.Buffer.BlockCopy(test1[0], 0, floatArray, 0, (int)test1[0].Length);

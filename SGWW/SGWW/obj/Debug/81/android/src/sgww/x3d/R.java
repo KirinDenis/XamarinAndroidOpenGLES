@@ -3219,15 +3219,15 @@ containing a value of this type.
         public static final int tooltip=0x7f030044;
     }
     public static final class raw {
-        public static final int car=0x7f060000;
-        public static final int den_fragment_shader=0x7f060001;
-        public static final int den_glass=0x7f060002;
-        public static final int den_glass_fragment_shader=0x7f060003;
-        public static final int den_glass_vertex_shader=0x7f060004;
-        public static final int den_house2_objnormal=0x7f060005;
-        public static final int den_house2_objtexture=0x7f060006;
-        public static final int den_house2_objvertex=0x7f060007;
-        public static final int den_vertex_shader=0x7f060008;
+        public static final int den_fragment_shader=0x7f060000;
+        public static final int den_glass=0x7f060001;
+        public static final int den_glass_fragment_shader=0x7f060002;
+        public static final int den_glass_vertex_shader=0x7f060003;
+        public static final int den_house2_objnormal=0x7f060004;
+        public static final int den_house2_objtexture=0x7f060005;
+        public static final int den_house2_objvertex=0x7f060006;
+        public static final int den_vertex_shader=0x7f060007;
+        public static final int dolphin=0x7f060008;
         public static final int fragment_line_shader=0x7f060009;
         public static final int fragment_shader=0x7f06000a;
         public static final int fragment_shader2=0x7f06000b;
@@ -3237,9 +3237,10 @@ containing a value of this type.
         public static final int oldhouse_objnormal=0x7f06000f;
         public static final int oldhouse_objtexture=0x7f060010;
         public static final int oldhouse_objvertex=0x7f060011;
-        public static final int simpleobj=0x7f060012;
-        public static final int vertex_line_shader=0x7f060013;
-        public static final int vertex_shader=0x7f060014;
+        public static final int one=0x7f060012;
+        public static final int simpleobj=0x7f060013;
+        public static final int vertex_line_shader=0x7f060014;
+        public static final int vertex_shader=0x7f060015;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f090000;

@@ -113,7 +113,8 @@
     <AndroidResource Include="Resources\raw\den_house2_objvertex" />
     <AndroidResource Include="Resources\raw\den_glass.obj" />
     <AndroidResource Include="Resources\raw\simpleobj" />
-    <AndroidResource Include="Resources\raw\car" />
+    <AndroidResource Include="Resources\raw\dolphin" />
+    <AndroidResource Include="Resources\raw\one" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_public.axml">
