@@ -83,5 +83,6 @@ F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\and
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\SGWW.csprojAssemblyReference.cache
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\res\raw\dolphin
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\res\raw\one
+F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\res\raw\dolphin2
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\bin\Debug\SGWW.dll
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\linksrc\SGWW.dll.mdb

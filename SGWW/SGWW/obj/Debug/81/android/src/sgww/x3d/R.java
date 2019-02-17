@@ -3228,19 +3228,20 @@ containing a value of this type.
         public static final int den_house2_objvertex=0x7f060006;
         public static final int den_vertex_shader=0x7f060007;
         public static final int dolphin=0x7f060008;
-        public static final int fragment_line_shader=0x7f060009;
-        public static final int fragment_shader=0x7f06000a;
-        public static final int fragment_shader2=0x7f06000b;
-        public static final int object1_objvertex=0x7f06000c;
-        public static final int object2_objvertex=0x7f06000d;
-        public static final int object3_objvertex=0x7f06000e;
-        public static final int oldhouse_objnormal=0x7f06000f;
-        public static final int oldhouse_objtexture=0x7f060010;
-        public static final int oldhouse_objvertex=0x7f060011;
-        public static final int one=0x7f060012;
-        public static final int simpleobj=0x7f060013;
-        public static final int vertex_line_shader=0x7f060014;
-        public static final int vertex_shader=0x7f060015;
+        public static final int dolphin2=0x7f060009;
+        public static final int fragment_line_shader=0x7f06000a;
+        public static final int fragment_shader=0x7f06000b;
+        public static final int fragment_shader2=0x7f06000c;
+        public static final int object1_objvertex=0x7f06000d;
+        public static final int object2_objvertex=0x7f06000e;
+        public static final int object3_objvertex=0x7f06000f;
+        public static final int oldhouse_objnormal=0x7f060010;
+        public static final int oldhouse_objtexture=0x7f060011;
+        public static final int oldhouse_objvertex=0x7f060012;
+        public static final int one=0x7f060013;
+        public static final int simpleobj=0x7f060014;
+        public static final int vertex_line_shader=0x7f060015;
+        public static final int vertex_shader=0x7f060016;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f090000;

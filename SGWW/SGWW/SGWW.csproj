@@ -115,6 +115,7 @@
     <AndroidResource Include="Resources\raw\simpleobj" />
     <AndroidResource Include="Resources\raw\dolphin" />
     <AndroidResource Include="Resources\raw\one" />
+    <AndroidResource Include="Resources\raw\dolphin2" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_public.axml">

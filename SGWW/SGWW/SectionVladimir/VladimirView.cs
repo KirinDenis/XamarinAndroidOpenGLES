@@ -64,7 +64,7 @@ namespace SGWW
 
             ObjParser model3D = new ObjParser();
 
-            List<byte[]> test1 = model3D.ParsedObject(context, "one");
+            List<byte[]> test1 = model3D.ParsedObject(context, "dolphin2");
                         
             float[] floatArray = new float[test1[0].Length / 4];
             System.Buffer.BlockCopy(test1[0], 0, floatArray, 0, (int)test1[0].Length);
@@ -88,7 +88,7 @@ namespace SGWW
 
             Paint paintPoint = new Paint();
             paintPoint.Color = Color.Black;
-            paintPoint.StrokeWidth = 6;
+            paintPoint.StrokeWidth = 2;
             paintPoint.SetStyle(Paint.Style.Fill);
 
             float[] vectorResult = new float[4];
@@ -111,11 +111,17 @@ namespace SGWW
             float stopX = -100;
             float stopY = -100;
 
-            float bufferStartX = -100;
-            float bufferStartY = -100;
+            float newStartX = -100;
+            float newStartY = -100;
 
-            float bufferStopX = -100;
-            float bufferStopY = -100;
+            float newStopX = -100;
+            float newStopY = -100;
+
+            //float bufferStartX = -100;
+            //float bufferStartY = -100;
+
+            //float bufferStopX = -100;
+            //float bufferStopY = -100;
 
             int countCicle = 0;
 
@@ -134,11 +140,19 @@ namespace SGWW
                 {
                     startX = vectorResult[0];
                     startY = vectorResult[1];
-                    if (countCicle != 0)
-                    {
-                        bufferStopX = vectorResult[0];
-                        bufferStopY = vectorResult[1];
+                    //if (countCicle != 0)
+                    //{
+                    //    bufferStopX = vectorResult[0];
+                    //    bufferStopY = vectorResult[1];
+                    //}
+
+                    if (newStartX != -100) { 
+                    newStopX = startX;
+                    newStopY = startY;
                     }
+
+
+
                 }
 
                 if (i % 2 == 1)
@@ -146,13 +160,19 @@ namespace SGWW
                     stopX = vectorResult[0];
                     stopY = vectorResult[1];
 
-                    bufferStartX = vectorResult[0];
-                    bufferStartY = vectorResult[1];
+                    //bufferStartX = vectorResult[0];
+                    //bufferStartY = vectorResult[1];
                 }
 
                 if (startX != -100 && stopX != -100)
                 {
-                   // canvas.DrawLine(startX + 500, startY + 500, stopX + 500, stopY + 500, paintPoint);
+                    canvas.DrawLine(startX + 500, startY + 500, stopX + 500, stopY + 500, paintPoint);
+
+                    newStartX = stopX;
+                    newStartY = stopY;
+
+                   // canvas.DrawLine(newStartX + 500, newStartY + 500, newStopX+ 500, newStopY + 500, paintPoint);
+
 
                     startX = -100;
                     startY = -100;
@@ -160,6 +180,20 @@ namespace SGWW
                     stopX = -100;
                     stopY = -100;
                 }
+
+                if (newStartX != -100 && newStopX != -100)
+                {
+                    
+                    canvas.DrawLine(newStartX + 500, newStartY + 500, newStopX+ 500, newStopY + 500, paintPoint);
+
+
+                    newStartX = -100;
+                    newStartY = -100;
+
+                    newStopX = -100;
+                    newStopY = -100;
+                }
+
 
                 //if (bufferStartX != -100 && bufferStopX != -100)
                 //{
@@ -181,95 +215,95 @@ namespace SGWW
             resultModelArray = new float[resultModel.Count];
             resultModelArray = resultModel.ToArray<float>();
 
-            float xResultModelArray = 0;
-            float yResultModelArray = 0;
-            float zResultModelArray = 0;
+            //float xResultModelArray = 0;
+            //float yResultModelArray = 0;
+            //float zResultModelArray = 0;
 
-            float xResultModelArrayCompare = 0;
-            float yResultModelArrayCompare = 0;
-            float zResultModelArrayCompare = 0;
+            //float xResultModelArrayCompare = 0;
+            //float yResultModelArrayCompare = 0;
+            //float zResultModelArrayCompare = 0;
 
-            float distance = 0;
-
-
-            for (int i = 0; i < resultModelArray.Length; i += 4)
-            {
-
-                for (int k = 0; k < resultModelArray.Length; k += 4)
-                {
-
-                    xResultModelArray = resultModelArray[i];
-                    yResultModelArray = resultModelArray[i + 1];
-                    zResultModelArray = resultModelArray[i + 2];
+            //float distance = 0;
 
 
-                    xResultModelArrayCompare = resultModelArray[k];
-                    yResultModelArrayCompare = resultModelArray[k + 1];
-                    zResultModelArrayCompare = resultModelArray[k + 2];
+            //for (int i = 0; i < resultModelArray.Length; i += 4)
+            //{
+
+            //    for (int k = 0; k < resultModelArray.Length; k += 4)
+            //    {
+
+            //        xResultModelArray = resultModelArray[i];
+            //        yResultModelArray = resultModelArray[i + 1];
+            //        zResultModelArray = resultModelArray[i + 2];
 
 
-                    distance = (float)Math.Sqrt(Math.Pow(xResultModelArrayCompare - xResultModelArray, 2) +
-                                                 Math.Pow(yResultModelArrayCompare - yResultModelArray, 2) +
-                                                 Math.Pow(zResultModelArrayCompare - zResultModelArray, 2));
-                    distanceClass = new Distanсe();
-
-                    distanceClass.x1 = xResultModelArray;
-                    distanceClass.y1 = yResultModelArray;
-                    distanceClass.z1 = zResultModelArray;
-
-                    distanceClass.x2 = xResultModelArrayCompare;
-                    distanceClass.y2 = yResultModelArrayCompare;
-                    distanceClass.z2 = zResultModelArrayCompare;
-
-                    distanceClass.distance = distance;
-
-                    if (distance != 0)
-                    {
-
-                        dataDistance.Add(distanceClass);
-                    }
-                }
-
-                dataDistanceAllPoints.Add(dataDistance);
-                dataDistance = new List<Distanсe>();
-
-            }
+            //        xResultModelArrayCompare = resultModelArray[k];
+            //        yResultModelArrayCompare = resultModelArray[k + 1];
+            //        zResultModelArrayCompare = resultModelArray[k + 2];
 
 
-            for (int i = 0; i < dataDistanceAllPoints.Count; i ++)
-            {
+            //        distance = (float)Math.Sqrt(Math.Pow(xResultModelArrayCompare - xResultModelArray, 2) +
+            //                                     Math.Pow(yResultModelArrayCompare - yResultModelArray, 2) +
+            //                                     Math.Pow(zResultModelArrayCompare - zResultModelArray, 2));
+            //        distanceClass = new Distanсe();
 
-                Utilits.comparing(dataDistanceAllPoints[i]);
+            //        distanceClass.x1 = xResultModelArray;
+            //        distanceClass.y1 = yResultModelArray;
+            //        distanceClass.z1 = zResultModelArray;
+
+            //        distanceClass.x2 = xResultModelArrayCompare;
+            //        distanceClass.y2 = yResultModelArrayCompare;
+            //        distanceClass.z2 = zResultModelArrayCompare;
+
+            //        distanceClass.distance = distance;
+
+            //        if (distance != 0)
+            //        {
+
+            //            dataDistance.Add(distanceClass);
+            //        }
+            //    }
+
+            //    dataDistanceAllPoints.Add(dataDistance);
+            //    dataDistance = new List<Distanсe>();
+
+            //}
 
 
-                canvas.DrawLine(dataDistanceAllPoints[i][0].x1 + 500, dataDistanceAllPoints[i][0].y1 + 500, dataDistanceAllPoints[i][0].x2 + 500, dataDistanceAllPoints[i][0].y2 + 500, paintPoint);
-                canvas.DrawLine(dataDistanceAllPoints[i][1].x1 + 500, dataDistanceAllPoints[i][1].y1 + 500, dataDistanceAllPoints[i][1].x2 + 500, dataDistanceAllPoints[i][1].y2 + 500, paintPoint);
-                canvas.DrawLine(dataDistanceAllPoints[i][2].x1 + 500, dataDistanceAllPoints[i][2].y1 + 500, dataDistanceAllPoints[i][2].x2 + 500, dataDistanceAllPoints[i][2].y2 + 500, paintPoint);
-                if( dataDistanceAllPoints[i][3].distance <= dataDistanceAllPoints[i][0].distance ||
-                    dataDistanceAllPoints[i][3].distance <= dataDistanceAllPoints[i][1].distance ||
-                    dataDistanceAllPoints[i][3].distance <= dataDistanceAllPoints[i][2].distance) { 
-                canvas.DrawLine(dataDistanceAllPoints[i][3].x1 + 500, dataDistanceAllPoints[i][3].y1 + 500, dataDistanceAllPoints[i][3].x2 + 500, dataDistanceAllPoints[i][3].y2 + 500, paintPoint);
-                }
-                if (dataDistanceAllPoints[i][4].distance <= dataDistanceAllPoints[i][0].distance ||
-                    dataDistanceAllPoints[i][4].distance <= dataDistanceAllPoints[i][1].distance ||
-                    dataDistanceAllPoints[i][4].distance <= dataDistanceAllPoints[i][2].distance)
-                {
-                    canvas.DrawLine(dataDistanceAllPoints[i][4].x1 + 500, dataDistanceAllPoints[i][4].y1 + 500, dataDistanceAllPoints[i][4].x2 + 500, dataDistanceAllPoints[i][4].y2 + 500, paintPoint);
-                }
+            //for (int i = 0; i < dataDistanceAllPoints.Count; i ++)
+            //{
 
-                if (dataDistanceAllPoints[i][5].distance <= dataDistanceAllPoints[i][0].distance ||
-                   dataDistanceAllPoints[i][5].distance <= dataDistanceAllPoints[i][1].distance ||
-                   dataDistanceAllPoints[i][5].distance <= dataDistanceAllPoints[i][2].distance)
-                {
-                    canvas.DrawLine(dataDistanceAllPoints[i][5].x1 + 500, dataDistanceAllPoints[i][5].y1 + 500, dataDistanceAllPoints[i][5].x2 + 500, dataDistanceAllPoints[i][5].y2 + 500, paintPoint);
-                }
-                if (dataDistanceAllPoints[i][6].distance <= dataDistanceAllPoints[i][0].distance ||
-                   dataDistanceAllPoints[i][6].distance <= dataDistanceAllPoints[i][1].distance ||
-                   dataDistanceAllPoints[i][6].distance <= dataDistanceAllPoints[i][2].distance)
-                {
-                    canvas.DrawLine(dataDistanceAllPoints[i][6].x1 + 500, dataDistanceAllPoints[i][6].y1 + 500, dataDistanceAllPoints[i][6].x2 + 500, dataDistanceAllPoints[i][6].y2 + 500, paintPoint);
-                }
-            }
+            //    Utilits.comparing(dataDistanceAllPoints[i]);
+
+
+            //    canvas.DrawLine(dataDistanceAllPoints[i][0].x1 + 500, dataDistanceAllPoints[i][0].y1 + 500, dataDistanceAllPoints[i][0].x2 + 500, dataDistanceAllPoints[i][0].y2 + 500, paintPoint);
+            //    canvas.DrawLine(dataDistanceAllPoints[i][1].x1 + 500, dataDistanceAllPoints[i][1].y1 + 500, dataDistanceAllPoints[i][1].x2 + 500, dataDistanceAllPoints[i][1].y2 + 500, paintPoint);
+            //    canvas.DrawLine(dataDistanceAllPoints[i][2].x1 + 500, dataDistanceAllPoints[i][2].y1 + 500, dataDistanceAllPoints[i][2].x2 + 500, dataDistanceAllPoints[i][2].y2 + 500, paintPoint);
+            //    if( dataDistanceAllPoints[i][3].distance <= dataDistanceAllPoints[i][0].distance ||
+            //        dataDistanceAllPoints[i][3].distance <= dataDistanceAllPoints[i][1].distance ||
+            //        dataDistanceAllPoints[i][3].distance <= dataDistanceAllPoints[i][2].distance) { 
+            //    canvas.DrawLine(dataDistanceAllPoints[i][3].x1 + 500, dataDistanceAllPoints[i][3].y1 + 500, dataDistanceAllPoints[i][3].x2 + 500, dataDistanceAllPoints[i][3].y2 + 500, paintPoint);
+            //    }
+            //    if (dataDistanceAllPoints[i][4].distance <= dataDistanceAllPoints[i][0].distance ||
+            //        dataDistanceAllPoints[i][4].distance <= dataDistanceAllPoints[i][1].distance ||
+            //        dataDistanceAllPoints[i][4].distance <= dataDistanceAllPoints[i][2].distance)
+            //    {
+            //        canvas.DrawLine(dataDistanceAllPoints[i][4].x1 + 500, dataDistanceAllPoints[i][4].y1 + 500, dataDistanceAllPoints[i][4].x2 + 500, dataDistanceAllPoints[i][4].y2 + 500, paintPoint);
+            //    }
+
+            //    if (dataDistanceAllPoints[i][5].distance <= dataDistanceAllPoints[i][0].distance ||
+            //       dataDistanceAllPoints[i][5].distance <= dataDistanceAllPoints[i][1].distance ||
+            //       dataDistanceAllPoints[i][5].distance <= dataDistanceAllPoints[i][2].distance)
+            //    {
+            //        canvas.DrawLine(dataDistanceAllPoints[i][5].x1 + 500, dataDistanceAllPoints[i][5].y1 + 500, dataDistanceAllPoints[i][5].x2 + 500, dataDistanceAllPoints[i][5].y2 + 500, paintPoint);
+            //    }
+            //    if (dataDistanceAllPoints[i][6].distance <= dataDistanceAllPoints[i][0].distance ||
+            //       dataDistanceAllPoints[i][6].distance <= dataDistanceAllPoints[i][1].distance ||
+            //       dataDistanceAllPoints[i][6].distance <= dataDistanceAllPoints[i][2].distance)
+            //    {
+            //        canvas.DrawLine(dataDistanceAllPoints[i][6].x1 + 500, dataDistanceAllPoints[i][6].y1 + 500, dataDistanceAllPoints[i][6].x2 + 500, dataDistanceAllPoints[i][6].y2 + 500, paintPoint);
+            //    }
+            //}
 
 
 
