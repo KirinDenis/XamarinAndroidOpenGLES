@@ -28,9 +28,9 @@ namespace SGWW
             //ENDSETUP OpenGL ES             
 
             //Loading objects 
-            glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house1_objvertex", "den_house1_objnormal", "den_house1_objtexture", "den_housetextutre"));
+            glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house1_objvertex", "den_house1_objnormal", "den_house1_objtexture", "den_housetextutre2"));
             glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house2_objvertex", "den_house2_objnormal", "den_house2_objtexture", "den_housetextutre2"));
-            glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house3_objvertex", "den_house3_objnormal", "den_house3_objtexture", "den_housetextutre"));
+            glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house3_objvertex", "den_house3_objnormal", "den_house3_objtexture", "den_housetextutre2"));
             glObjects.Add(new DenGlassObject(this, "den_glass"));
 
 
@@ -55,15 +55,18 @@ namespace SGWW
             if (animation > 800) animation = 0;
 
             glObjects[0].DrawFrame();
+            glObjects[2].DrawFrame();
+            glObjects[1].DrawFrame();
+            //glObjects[0].DrawFrame();
 
             if (animation > 200)
             {
-               glObjects[2].DrawFrame();
+              // glObjects[2].DrawFrame();
             }
 
             if (animation > 500)
             {
-               glObjects[1].DrawFrame();
+              // glObjects[1].DrawFrame();
             }
            
 

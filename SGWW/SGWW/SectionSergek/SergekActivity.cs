@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Opengl;
 using Android.Views;
 
@@ -11,8 +10,8 @@ using Android.Views;
 /// </summary>
 namespace SGWW
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = false)]
-    public class SergekActivity : AppCompatActivity, View.IOnTouchListener
+    [Activity(Label = "@string/app_name",  MainLauncher = false)]
+    public class SergekActivity : Activity, View.IOnTouchListener
     {
         private GLSurfaceView _GLSurfaceView;
         private SergekView sergekView;

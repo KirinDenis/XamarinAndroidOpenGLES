@@ -20,7 +20,8 @@
                gl_FragColor = color;
             }
             */
-           gl_FragColor =  texture2D(u_Texture, v_TextureCoord) * v_Color;
+         //  gl_FragColor =  texture2D(u_Texture, v_TextureCoord) * v_Color;
+            gl_FragColor =  texture2D(u_Texture, v_TextureCoord);
            
                                                                                  //+ "   gl_FragColor = v_Color;  \n"   // Pass the color directly through the pipeline.		                
   }        
