@@ -6,7 +6,21 @@
         varying vec2 v_TextureCoord;        // This is the texture coordinate from the vertex shader interpolated across the triangle per fragment.			                
         uniform sampler2D u_Texture;        // This is the texture image handler 
         void main()                         // The entry point for our fragment shader.
-        {                              
-           gl_FragColor = texture2D(u_Texture, v_TextureCoord) * v_Color;     // Pass the color directly through the pipeline.		                
+        {      
+            /*
+           //erase black color 
+           vec4 color =  texture2D(u_Texture, v_TextureCoord) * v_Color;
+
+           if (color.r <= 0.01 && color.g <= 0.01 && color.b <= 0.01)
+	    {
+               gl_FragColor = v_Color;
+            }
+           else
+            {
+               gl_FragColor = color;
+            }
+            */
+           gl_FragColor =  texture2D(u_Texture, v_TextureCoord) * v_Color;
+           
                                                                                  //+ "   gl_FragColor = v_Color;  \n"   // Pass the color directly through the pipeline.		                
-        }        
+  }        

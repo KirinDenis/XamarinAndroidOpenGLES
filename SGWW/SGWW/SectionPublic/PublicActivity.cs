@@ -34,7 +34,9 @@ namespace SGWW
 
             _GLSurfaceView = new GLSurfaceView(this);
             _GLSurfaceView.SetEGLContextClientVersion(2);
-            
+            //_GLSurfaceView.SetEGLConfigChooser(true);
+
+
             renderer = new PublicRenderer(this);
             _GLSurfaceView.SetRenderer(renderer);
 
