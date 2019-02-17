@@ -52,16 +52,25 @@ namespace SGWW
                0.999999f, 1.000000f, -3.000000f,
                -1.000000f, 1.000000f, -3.000000f,
                -1.000000f, 1.000000f, -5.000000f};
+
         int a = 0;
+        public int objectSize = -1;
 
 
 
         public VladimirView(Context context) : base(context)
         {
-            //            modelObject2D  = new float[modelObject.Length/3*2];
+            //   modelObject2D  = new float[modelObject.Length/3*2];
 
             ObjParser model3D = new ObjParser();
-            var test = model3D.ParsedObject(context, "simpleobj");
+
+            List<byte[]> test1 = model3D.ParsedObject(context, "car");
+                        
+            float[] floatArray = new float[test1[0].Length / 4];
+            System.Buffer.BlockCopy(test1[0], 0, floatArray, 0, (int)test1[0].Length);
+
+            modelObject = floatArray;
+
 
 
         }

@@ -3054,73 +3054,76 @@ namespace SGWW
 		{
 			
 			// aapt resource value: 0x7F040002
-			public const int den_fragment_shader = 2130968578;
+			public const int car = 2130968578;
 			
 			// aapt resource value: 0x7F040003
-			public const int den_glass = 2130968579;
+			public const int den_fragment_shader = 2130968579;
 			
 			// aapt resource value: 0x7F040004
-			public const int den_glass_fragment_shader = 2130968580;
+			public const int den_glass = 2130968580;
 			
 			// aapt resource value: 0x7F040005
-			public const int den_glass_objnormal = 2130968581;
+			public const int den_glass_fragment_shader = 2130968581;
 			
 			// aapt resource value: 0x7F040006
-			public const int den_glass_objtexture = 2130968582;
+			public const int den_glass_objnormal = 2130968582;
 			
 			// aapt resource value: 0x7F040007
-			public const int den_glass_objvertex = 2130968583;
+			public const int den_glass_objtexture = 2130968583;
 			
 			// aapt resource value: 0x7F040008
-			public const int den_glass_vertex_shader = 2130968584;
+			public const int den_glass_objvertex = 2130968584;
 			
 			// aapt resource value: 0x7F040009
-			public const int den_house2_objnormal = 2130968585;
+			public const int den_glass_vertex_shader = 2130968585;
 			
 			// aapt resource value: 0x7F040010
-			public const int den_house2_objtexture = 2130968592;
+			public const int den_house2_objnormal = 2130968592;
 			
 			// aapt resource value: 0x7F040011
-			public const int den_house2_objvertex = 2130968593;
+			public const int den_house2_objtexture = 2130968593;
 			
 			// aapt resource value: 0x7F040012
-			public const int den_vertex_shader = 2130968594;
+			public const int den_house2_objvertex = 2130968594;
 			
 			// aapt resource value: 0x7F040013
-			public const int fragment_line_shader = 2130968595;
+			public const int den_vertex_shader = 2130968595;
 			
 			// aapt resource value: 0x7F040014
-			public const int fragment_shader = 2130968596;
+			public const int fragment_line_shader = 2130968596;
 			
 			// aapt resource value: 0x7F040015
-			public const int fragment_shader2 = 2130968597;
+			public const int fragment_shader = 2130968597;
 			
 			// aapt resource value: 0x7F040016
-			public const int object1_objvertex = 2130968598;
+			public const int fragment_shader2 = 2130968598;
 			
 			// aapt resource value: 0x7F040017
-			public const int object2_objvertex = 2130968599;
+			public const int object1_objvertex = 2130968599;
 			
 			// aapt resource value: 0x7F040018
-			public const int object3_objvertex = 2130968600;
+			public const int object2_objvertex = 2130968600;
 			
 			// aapt resource value: 0x7F040019
-			public const int oldhouse_objnormal = 2130968601;
+			public const int object3_objvertex = 2130968601;
 			
 			// aapt resource value: 0x7F040020
-			public const int oldhouse_objtexture = 2130968608;
+			public const int oldhouse_objnormal = 2130968608;
 			
 			// aapt resource value: 0x7F040021
-			public const int oldhouse_objvertex = 2130968609;
+			public const int oldhouse_objtexture = 2130968609;
 			
 			// aapt resource value: 0x7F040022
-			public const int simpleobj = 2130968610;
+			public const int oldhouse_objvertex = 2130968610;
 			
 			// aapt resource value: 0x7F040023
-			public const int vertex_line_shader = 2130968611;
+			public const int simpleobj = 2130968611;
 			
 			// aapt resource value: 0x7F040024
-			public const int vertex_shader = 2130968612;
+			public const int vertex_line_shader = 2130968612;
+			
+			// aapt resource value: 0x7F040025
+			public const int vertex_shader = 2130968613;
 			
 			static Raw()
 			{
