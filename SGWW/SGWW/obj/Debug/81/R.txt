@@ -1016,8 +1016,9 @@ int raw object3_objvertex 0x7f06000d
 int raw oldhouse_objnormal 0x7f06000e
 int raw oldhouse_objtexture 0x7f06000f
 int raw oldhouse_objvertex 0x7f060010
-int raw vertex_line_shader 0x7f060011
-int raw vertex_shader 0x7f060012
+int raw simpleobj 0x7f060011
+int raw vertex_line_shader 0x7f060012
+int raw vertex_shader 0x7f060013
 int string abc_action_bar_home_description 0x7f090000
 int string abc_action_bar_up_description 0x7f090001
 int string abc_action_menu_overflow_description 0x7f090002

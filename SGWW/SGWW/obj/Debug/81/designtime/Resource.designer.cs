@@ -3114,10 +3114,13 @@ namespace SGWW
 			public const int oldhouse_objvertex = 2130968609;
 			
 			// aapt resource value: 0x7F040022
-			public const int vertex_line_shader = 2130968610;
+			public const int simpleobj = 2130968610;
 			
 			// aapt resource value: 0x7F040023
-			public const int vertex_shader = 2130968611;
+			public const int vertex_line_shader = 2130968611;
+			
+			// aapt resource value: 0x7F040024
+			public const int vertex_shader = 2130968612;
 			
 			static Raw()
 			{

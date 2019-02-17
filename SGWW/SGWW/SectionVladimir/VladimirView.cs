@@ -59,6 +59,11 @@ namespace SGWW
         public VladimirView(Context context) : base(context)
         {
             //            modelObject2D  = new float[modelObject.Length/3*2];
+
+            ObjParser model3D = new ObjParser();
+            var test = model3D.ParsedObject(context, "simpleobj");
+
+
         }
 
         protected override void OnDraw(Canvas canvas)

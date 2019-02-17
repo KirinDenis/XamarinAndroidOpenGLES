@@ -3236,8 +3236,9 @@ containing a value of this type.
         public static final int oldhouse_objnormal=0x7f06000e;
         public static final int oldhouse_objtexture=0x7f06000f;
         public static final int oldhouse_objvertex=0x7f060010;
-        public static final int vertex_line_shader=0x7f060011;
-        public static final int vertex_shader=0x7f060012;
+        public static final int simpleobj=0x7f060011;
+        public static final int vertex_line_shader=0x7f060012;
+        public static final int vertex_shader=0x7f060013;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f090000;
