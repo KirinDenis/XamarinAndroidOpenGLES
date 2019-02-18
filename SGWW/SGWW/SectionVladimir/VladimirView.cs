@@ -5,6 +5,7 @@ using Android.Views;
 using Android.Content;
 using Android.Graphics;
 using SGWW.SectionVladimir;
+using Point = SGWW.SectionVladimir.Point;
 
 namespace SGWW
 {
@@ -64,7 +65,7 @@ namespace SGWW
 
             ObjParser model3D = new ObjParser();
 
-            List<byte[]> test1 = model3D.ParsedObject(context, "dolphin2");
+            List<byte[]> test1 = model3D.ParsedObject(context, "dolphin3");
                         
             float[] floatArray = new float[test1[0].Length / 4];
             System.Buffer.BlockCopy(test1[0], 0, floatArray, 0, (int)test1[0].Length);
@@ -88,7 +89,7 @@ namespace SGWW
 
             Paint paintPoint = new Paint();
             paintPoint.Color = Color.Black;
-            paintPoint.StrokeWidth = 2;
+            paintPoint.StrokeWidth = 1;
             paintPoint.SetStyle(Paint.Style.Fill);
 
             float[] vectorResult = new float[4];
@@ -117,6 +118,8 @@ namespace SGWW
             float newStopX = -100;
             float newStopY = -100;
 
+            Point[] tringle = new Point[3];
+
             //float bufferStartX = -100;
             //float bufferStartY = -100;
 
@@ -135,64 +138,105 @@ namespace SGWW
                 Android.Opengl.Matrix.MultiplyMV(vectorResult, 0, matrix, 0, partModelVector, 0);
 
                 canvas.DrawPoint(vectorResult[0] + 500, vectorResult[1] + 500, paintPoint);
+                
 
-                if (i % 2 == 0)
+                if (countCicle % 3 == 0)
                 {
-                    startX = vectorResult[0];
-                    startY = vectorResult[1];
-                    //if (countCicle != 0)
-                    //{
-                    //    bufferStopX = vectorResult[0];
-                    //    bufferStopY = vectorResult[1];
-                    //}
+                    Point point = new Point();
+                    point.x = vectorResult[0];
+                    point.y = vectorResult[1];
 
-                    if (newStartX != -100) { 
-                    newStopX = startX;
-                    newStopY = startY;
-                    }
-
-
-
+                    tringle[0] = point;
                 }
 
-                if (i % 2 == 1)
-                {
-                    stopX = vectorResult[0];
-                    stopY = vectorResult[1];
 
-                    //bufferStartX = vectorResult[0];
-                    //bufferStartY = vectorResult[1];
+                if (countCicle % 3 == 1)
+                {
+                    Point point = new Point();
+                    point.x = vectorResult[0];
+                    point.y = vectorResult[1];
+
+                    tringle[1] = point;
                 }
 
-                if (startX != -100 && stopX != -100)
+                if (countCicle % 3 == 2)
                 {
-                    canvas.DrawLine(startX + 500, startY + 500, stopX + 500, stopY + 500, paintPoint);
+                    Point point = new Point();
+                    point.x = vectorResult[0];
+                    point.y = vectorResult[1];
 
-                    newStartX = stopX;
-                    newStartY = stopY;
-
-                   // canvas.DrawLine(newStartX + 500, newStartY + 500, newStopX+ 500, newStopY + 500, paintPoint);
-
-
-                    startX = -100;
-                    startY = -100;
-
-                    stopX = -100;
-                    stopY = -100;
+                    tringle[2] = point;
                 }
 
-                if (newStartX != -100 && newStopX != -100)
+                if (tringle[0] !=null && tringle[1] != null && tringle[2] != null)
                 {
-                    
-                    canvas.DrawLine(newStartX + 500, newStartY + 500, newStopX+ 500, newStopY + 500, paintPoint);
+                    canvas.DrawLine(tringle[0].x + 500, tringle[0].y + 500, tringle[1].x + 500, tringle[1].y + 500, paintPoint);
+                    canvas.DrawLine(tringle[1].x + 500, tringle[1].y + 500, tringle[2].x + 500, tringle[2].y + 500, paintPoint);
+                    canvas.DrawLine(tringle[2].x + 500, tringle[2].y + 500, tringle[1].x + 500, tringle[1].y + 500, paintPoint);
 
-
-                    newStartX = -100;
-                    newStartY = -100;
-
-                    newStopX = -100;
-                    newStopY = -100;
+                    tringle = new Point[3];
                 }
+
+                countCicle++;
+
+                //if (i % 2 == 0)
+                //{
+                //    startX = vectorResult[0];
+                //    startY = vectorResult[1];
+                //    //if (countCicle != 0)
+                //    //{
+                //    //    bufferStopX = vectorResult[0];
+                //    //    bufferStopY = vectorResult[1];
+                //    //}
+
+                //    if (newStartX != -100)
+                //    {
+                //        newStopX = startX;
+                //        newStopY = startY;
+                //    }
+
+
+
+                //}
+
+                //if (i % 2 == 1)
+                //{
+                //    stopX = vectorResult[0];
+                //    stopY = vectorResult[1];
+
+                //    //bufferStartX = vectorResult[0];
+                //    //bufferStartY = vectorResult[1];
+                //}
+
+                //if (startX != -100 && stopX != -100)
+                //{
+                //    canvas.DrawLine(startX + 500, startY + 500, stopX + 500, stopY + 500, paintPoint);
+
+                //    newStartX = stopX;
+                //    newStartY = stopY;
+
+                //    // canvas.DrawLine(newStartX + 500, newStartY + 500, newStopX+ 500, newStopY + 500, paintPoint);
+
+
+                //    //startX = -100;
+                //    //startY = -100;
+
+                //    //stopX = -100;
+                //    //stopY = -100;
+                //}
+
+                //if (newStartX != -100 && newStopX != -100)
+                //{
+
+                //    canvas.DrawLine(newStartX + 500, newStartY + 500, newStopX+ 500, newStopY + 500, paintPoint);
+
+
+                //    //newStartX = -100;
+                //    //newStartY = -100;
+
+                //    //newStopX = -100;
+                //    //newStopY = -100;
+                //}
 
 
                 //if (bufferStartX != -100 && bufferStopX != -100)
@@ -205,15 +249,15 @@ namespace SGWW
                 //    bufferStopX = -100;
                 //    bufferStopY = -100;
                 //}
-                countCicle++;
-                resultModel.Add(vectorResult[0]);
-                resultModel.Add(vectorResult[1]);
-                resultModel.Add(vectorResult[2]);
-                resultModel.Add(vectorResult[3]);
+                //countCicle++;
+                //resultModel.Add(vectorResult[0]);
+                //resultModel.Add(vectorResult[1]);
+                //resultModel.Add(vectorResult[2]);
+                //resultModel.Add(vectorResult[3]);
             }
 
-            resultModelArray = new float[resultModel.Count];
-            resultModelArray = resultModel.ToArray<float>();
+            //resultModelArray = new float[resultModel.Count];
+            //resultModelArray = resultModel.ToArray<float>();
 
             //float xResultModelArray = 0;
             //float yResultModelArray = 0;

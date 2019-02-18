@@ -3195,43 +3195,46 @@ namespace SGWW
 			public const int dolphin2 = 2131099657;
 			
 			// aapt resource value: 0x7f06000a
-			public const int fragment_line_shader = 2131099658;
+			public const int dolphin3 = 2131099658;
 			
 			// aapt resource value: 0x7f06000b
-			public const int fragment_shader = 2131099659;
+			public const int fragment_line_shader = 2131099659;
 			
 			// aapt resource value: 0x7f06000c
-			public const int fragment_shader2 = 2131099660;
+			public const int fragment_shader = 2131099660;
 			
 			// aapt resource value: 0x7f06000d
-			public const int object1_objvertex = 2131099661;
+			public const int fragment_shader2 = 2131099661;
 			
 			// aapt resource value: 0x7f06000e
-			public const int object2_objvertex = 2131099662;
+			public const int object1_objvertex = 2131099662;
 			
 			// aapt resource value: 0x7f06000f
-			public const int object3_objvertex = 2131099663;
+			public const int object2_objvertex = 2131099663;
 			
 			// aapt resource value: 0x7f060010
-			public const int oldhouse_objnormal = 2131099664;
+			public const int object3_objvertex = 2131099664;
 			
 			// aapt resource value: 0x7f060011
-			public const int oldhouse_objtexture = 2131099665;
+			public const int oldhouse_objnormal = 2131099665;
 			
 			// aapt resource value: 0x7f060012
-			public const int oldhouse_objvertex = 2131099666;
+			public const int oldhouse_objtexture = 2131099666;
 			
 			// aapt resource value: 0x7f060013
-			public const int one = 2131099667;
+			public const int oldhouse_objvertex = 2131099667;
 			
 			// aapt resource value: 0x7f060014
-			public const int simpleobj = 2131099668;
+			public const int one = 2131099668;
 			
 			// aapt resource value: 0x7f060015
-			public const int vertex_line_shader = 2131099669;
+			public const int simpleobj = 2131099669;
 			
 			// aapt resource value: 0x7f060016
-			public const int vertex_shader = 2131099670;
+			public const int vertex_line_shader = 2131099670;
+			
+			// aapt resource value: 0x7f060017
+			public const int vertex_shader = 2131099671;
 			
 			static Raw()
 			{

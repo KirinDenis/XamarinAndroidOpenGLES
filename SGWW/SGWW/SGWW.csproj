@@ -92,6 +92,7 @@
     <Compile Include="SectionVitaly\VitalyRenderer.cs" />
     <Compile Include="SectionVitaly\VitalyView.cs" />
     <Compile Include="SectionVladimir\Distanсe.cs" />
+    <Compile Include="SectionVladimir\Point.cs" />
     <Compile Include="SectionVladimir\Utilits.cs" />
     <Compile Include="SectionVladimir\VladimirActivity.cs" />
     <Compile Include="SectionVladimir\VladimirRenderer.cs" />
@@ -116,6 +117,7 @@
     <AndroidResource Include="Resources\raw\dolphin" />
     <AndroidResource Include="Resources\raw\one" />
     <AndroidResource Include="Resources\raw\dolphin2" />
+    <AndroidResource Include="Resources\raw\dolphin3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_public.axml">
