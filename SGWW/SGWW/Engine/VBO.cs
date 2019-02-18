@@ -65,14 +65,35 @@ namespace SGWW
 
         private void ArrayToVBO(Array source, int size)
         {
-            objectSize = (int)(size / 4 / 3);
+            
             float[] floatArray = new float[size / 4];
             
             System.Buffer.BlockCopy(source, 0, floatArray, 0, (int)size);
+            //temp Cut vertex 
+            int cutSize = 0;
+            for (int i=0; i < size / 4; i+=3)
+            {
+                if (floatArray[i + 1] < 20.0f) cutSize++;
+            }
+            float[] cutArray = new float[cutSize*3];
+
+            int cutArrayIndex = 0;
+            for (int i = 0; i < size / 4; i += 3)
+            {
+                if (floatArray[i + 1] < 20.0f)
+                {
+                    cutArray[cutArrayIndex] = floatArray[i];
+                    cutArray[cutArrayIndex+1] = floatArray[i + 1];
+                    cutArray[cutArrayIndex + 2] = floatArray[i + 2];
+                    cutArrayIndex+=3;
+                }
+            }
+            size = cutSize * 3 * 4;
+            objectSize = (int)(size / 4 / 3);
 
             FloatBuffer vertexBuffer;
             vertexBuffer = FloatBuffer.Allocate((int)size / 4); // float array to
-            vertexBuffer.Put(floatArray, 0, (int)size / 4);
+            vertexBuffer.Put(cutArray, 0, (int)size / 4);
             vertexBuffer.Flip();
 
             GLES20.GlGenBuffers(1, VBOBuffers, 0);

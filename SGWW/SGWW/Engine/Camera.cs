@@ -22,12 +22,12 @@ namespace SGWW
 
         // Position the eye behind the origin.
         public float eyeX = 0.0f;
-        public float eyeY = 0.0f;
+        public float eyeY = 8.0f;
         public float eyeZ = -4.5f;
 
         // We are looking toward the distance
         public float lookX = 0.0f;
-        public float lookY = 0.0f;
+        public float lookY = 5.0f;
         public float lookZ = 10.0f;
 
         // Set our up vector. This is where our head would be pointing were we holding the camera.

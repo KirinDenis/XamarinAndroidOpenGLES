@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Opengl;
 using Android.Views;
 
@@ -11,14 +10,18 @@ using Android.Views;
 /// </summary>
 namespace SGWW
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = false)]
-    public class DenActivity : AppCompatActivity, View.IOnTouchListener
+    [Activity(Label = "@string/app_name",  MainLauncher = false)]
+    public class DenActivity : Activity, View.IOnTouchListener
     {
         private GLSurfaceView _GLSurfaceView;
         private DenRenderer renderer;
 
         private float x = -1;
         private float y = -1;
+
+        private float rLook = 4.0f;
+        private float rEye = 5.0f;
+        private float lamda = 0.0f; 
 
         /// <summary>
         /// See Android App lifecycle diagram to know when Android call this event hadler 
@@ -56,8 +59,19 @@ namespace SGWW
                 case MotionEventActions.Move:
                     if (x != -1)
                     {
-                        renderer.camera.eyeX -= (x-e.RawX) / 50;
-                        renderer.camera.eyeY -= (y-e.RawY) / 50;
+                        //x is camera rotate by XZ axis
+                        lamda -= (x-e.RawX) / 10; //Z rotate angel at x move
+                        rLook -= (y - e.RawY) / 300;
+                        rEye -= (y - e.RawY) / 290;
+
+                        renderer.camera.lookX = rLook * Constants.CosR(lamda);
+                        renderer.camera.lookZ = rLook * Constants.SinR(lamda); 
+
+                        renderer.camera.eyeX = rEye * Constants.CosR(lamda);
+                        renderer.camera.eyeZ = rEye * Constants.SinR(lamda);
+
+                        renderer.camera.lookY = rLook * Constants.SinR(54);
+                        renderer.camera.eyeY = rEye * Constants.SinR(54);
                     }
 
                     x = e.RawX;

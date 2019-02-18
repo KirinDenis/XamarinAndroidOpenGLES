@@ -10,6 +10,7 @@ namespace SGWW
         //For demo RUN only
         private DateTime lastTime;
         private Random r = new Random(0xFFFFF);
+        private int animation = 0;
 
         public DenRenderer(Context context) : base(context)
         {
@@ -20,17 +21,19 @@ namespace SGWW
             base.OnSurfaceCreated(gl, config);
 
             //SETUP OpenGL ES             
-            GLES20.GlClearColor(0.9f, 0.9f, 0.9f, 0.9f);
+            GLES20.GlClearColor(0.5f, 0.5f, 0.5f, 1.0f);
             GLES20.GlEnable(GLES20.GlDepthTest); //uncoment if needs enabled dpeth test
             //  GLES20.GlEnable(2884); // GlCullFace == 2884 see OpenGL documentation to this constant value  
             //  GLES20.GlCullFace(GLES20.GlFront);
             //ENDSETUP OpenGL ES             
 
             //Loading objects 
-            glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house2_objvertex", "den_house2_objnormal", "den_house2_objtexture", "den_housetextutre"));
+            glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house1_objvertex", "den_house1_objnormal", "den_house1_objtexture", "den_housetextutre2"));
+            glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house2_objvertex", "den_house2_objnormal", "den_house2_objtexture", "den_housetextutre2"));
+            glObjects.Add(new GLObject(this, "den_vertex_shader", "den_fragment_shader", "den_house3_objvertex", "den_house3_objnormal", "den_house3_objtexture", "den_housetextutre2"));
             glObjects.Add(new DenGlassObject(this, "den_glass"));
 
-            
+
             //Ask android to run RAM garbage cleaner
             System.GC.Collect();
         }
@@ -43,8 +46,34 @@ namespace SGWW
         public override void OnDrawFrame(IGL10 gl)
         {
             GLES20.GlClear(GLES20.GlColorBufferBit | GLES20.GlDepthBufferBit);
-            
 
+            //base.OnDrawFrame(gl);
+
+            camera.OnDrawFrame();
+            //TimeSpan span = DateTime.Now - lastTime;
+            animation++;
+            if (animation > 800) animation = 0;
+
+            glObjects[0].DrawFrame();
+            glObjects[2].DrawFrame();
+            glObjects[1].DrawFrame();
+            //glObjects[0].DrawFrame();
+
+            if (animation > 200)
+            {
+              // glObjects[2].DrawFrame();
+            }
+
+            if (animation > 500)
+            {
+              // glObjects[1].DrawFrame();
+            }
+           
+
+            glObjects[3].DrawFrame();
+
+            //Animation no way 
+            /*
             TimeSpan span = DateTime.Now - lastTime;
             if (span.TotalMilliseconds > 500)
             {
@@ -82,17 +111,21 @@ namespace SGWW
                 else
                 if (rnd < 700)
                 {
-                    (glObjects[1] as DenGlassObject).brocken = true;
+                    (glObjects[3] as DenGlassObject).brocken = true;
                 }
-
-
-
 
                 lastTime = DateTime.Now;
             }
 
-            base.OnDrawFrame(gl);
-
+            if (canvasView != null)
+            {
+                try
+                {
+                    canvasView.Invalidate();
+                }
+                catch { }
+            }
+            */
             /*
             camera.OnDrawFrame();
 
@@ -109,7 +142,7 @@ namespace SGWW
             if (glObjects[1].lw > 0.5) glObjects[1].lw = 0;
 
             glObjects[1].DrawFrame(camera);
-            
+
             gl.GlDisable(GL10.GlBlend);
             */
         }

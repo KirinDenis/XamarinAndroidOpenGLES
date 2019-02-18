@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="SGWW.x3D" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
-	<application android:icon="@drawable/sgwwlogo" android:allowBackup="true" android:label="@string/app_name" android:supportsRtl="true" android:theme="@style/AppTheme"></application>
+	<application android:icon="@drawable/sgwwlogo" android:allowBackup="true" android:label="@string/app_name" android:supportsRtl="true"></application>
 </manifest>
