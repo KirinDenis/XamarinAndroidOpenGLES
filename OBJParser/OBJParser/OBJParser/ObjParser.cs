@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -50,7 +51,7 @@ namespace OBJParser
                     float[] convertedLine = new float[splitedLine.Length];
                     for (int i = 0; i < splitedLine.Length; i++)
                     {
-                        convertedLine[i] = float.Parse(splitedLine[i]);
+                        convertedLine[i] = float.Parse(splitedLine[i], new CultureInfo("en-US").NumberFormat);
                     }
                     vertexModel.Add(convertedLine);
                 }
@@ -131,7 +132,7 @@ namespace OBJParser
                     float[] convertedLine = new float[splitedLine.Length];
                     for (int i = 0; i < splitedLine.Length; i++)
                     {
-                        convertedLine[i] = float.Parse(splitedLine[i]);
+                        convertedLine[i] = float.Parse(splitedLine[i], new CultureInfo("en-US").NumberFormat);
                     }
                     textureModel.Add(convertedLine);
                 }
@@ -177,7 +178,7 @@ namespace OBJParser
                     float[] convertedLine = new float[splitedLine.Length];
                     for (int i = 0; i < splitedLine.Length; i++)
                     {
-                        convertedLine[i] = float.Parse(splitedLine[i]);
+                        convertedLine[i] = float.Parse(splitedLine[i], new CultureInfo("en-US").NumberFormat);
                     }
                     normalModel.Add(convertedLine);
                 }
