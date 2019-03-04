@@ -3,16 +3,16 @@
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:icon="@drawable/sgwwlogo" android:allowBackup="true" android:label="@string/app_name" android:supportsRtl="true" android:theme="@style/AppTheme" android:name="android.app.Application" android:debuggable="true">
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.DenActivity" />
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.PublicActivity" />
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.RuslanActivity" />
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.KonstantinActivity" />
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.SergekActivity" />
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.StasActivity" />
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.VitalyActivity" />
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.VladimirActivity" />
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.SelectActivity">
+  <application android:icon="@drawable/sgwwlogo" android:allowBackup="true" android:label="@string/app_name" android:supportsRtl="true" android:name="android.app.Application" android:debuggable="true">
+    <activity android:label="@string/app_name" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.DenActivity" />
+    <activity android:label="@string/app_name" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.PublicActivity" />
+    <activity android:label="@string/app_name" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.RuslanActivity" />
+    <activity android:label="@string/app_name" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.KonstantinActivity" />
+    <activity android:label="@string/app_name" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.SergekActivity" />
+    <activity android:label="@string/app_name" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.StasActivity" />
+    <activity android:label="@string/app_name" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.VitalyActivity" />
+    <activity android:label="@string/app_name" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.VladimirActivity" />
+    <activity android:label="@string/app_name" android:name="md5c045e8b0f778ce9a7ba5ed8cd785c00e.SelectActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

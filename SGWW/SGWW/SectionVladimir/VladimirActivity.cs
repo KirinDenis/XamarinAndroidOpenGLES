@@ -16,6 +16,7 @@ namespace SGWW
         private GLSurfaceView _GLSurfaceView;
         private VladimirView vladimirView;
         private VladimirRenderer renderer;
+        private VladimirRender2 renderer2;
 
         private float x = -1;
         private float y = -1;
@@ -38,18 +39,19 @@ namespace SGWW
             _GLSurfaceView.SetRenderer(renderer);
 
             RelativeLayout sceneHolder = (RelativeLayout)this.FindViewById(Resource.Id.sceneHolder);
-            //sceneHolder.AddView(_GLSurfaceView);
+            sceneHolder.AddView(_GLSurfaceView);
+            sceneHolder.SetOnTouchListener(this);
 
-            vladimirView = new VladimirView(this);
-            vladimirView.render = renderer;
-            vladimirView.SetOnTouchListener(this);
+            //vladimirView = new VladimirView(this);
+           //vladimirView.render = renderer;
+            //vladimirView.SetOnTouchListener(this);
 
-            sceneHolder.AddView(vladimirView);
+            //sceneHolder.AddView(vladimirView);
 
-            System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 10;
-            timer.Elapsed += OnTimedEvent;
-            timer.Enabled = true;
+            //System.Timers.Timer timer = new System.Timers.Timer();
+            //timer.Interval = 10;
+            //timer.Elapsed += OnTimedEvent;
+            //timer.Enabled = true;
         }
 
         public bool OnTouch(View v, MotionEvent e)
@@ -63,8 +65,8 @@ namespace SGWW
                 case MotionEventActions.Move:
                     if (x != -1)
                     {
-                        renderer.camera.eyeX -= (x-e.RawX) / 50;
-                        renderer.camera.eyeY -= (y-e.RawY) / 50;
+                        renderer.angleX += (y - e.RawY) / 5; 
+                        renderer.angleY -= (x - e.RawX) / 5;
                     }
 
                     x = e.RawX;
@@ -77,7 +79,7 @@ namespace SGWW
 
         private void OnTimedEvent(object sender, System.Timers.ElapsedEventArgs e)
         {
-            vladimirView.Invalidate();
+         //   vladimirView.Invalidate();
         }
 
         protected override void OnResume()

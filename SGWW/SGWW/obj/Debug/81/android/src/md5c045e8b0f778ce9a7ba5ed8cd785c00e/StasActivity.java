@@ -2,7 +2,7 @@ package md5c045e8b0f778ce9a7ba5ed8cd785c00e;
 
 
 public class StasActivity
-	extends android.support.v7.app.AppCompatActivity
+	extends android.app.Activity
 	implements
 		mono.android.IGCUserPeer,
 		android.view.View.OnTouchListener

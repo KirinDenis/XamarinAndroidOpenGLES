@@ -65,7 +65,7 @@ namespace SGWW
 
             ObjParser model3D = new ObjParser();
 
-            List<byte[]> test1 = model3D.ParsedObject(context, "dolphin3");
+            List<byte[]> test1 = model3D.ParsedObject(context, "bottle2");
                         
             float[] floatArray = new float[test1[0].Length / 4];
             System.Buffer.BlockCopy(test1[0], 0, floatArray, 0, (int)test1[0].Length);
@@ -79,7 +79,7 @@ namespace SGWW
         protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
-            a++;
+            a+=10;
 
             Paint paint = new Paint();
             paint.Color = Color.Black;
@@ -102,9 +102,11 @@ namespace SGWW
             List<List<Distanсe>> dataDistanceAllPoints = new List<List<Distanсe>> { };
 
             Android.Opengl.Matrix.SetIdentityM(matrix, 0);
+            Android.Opengl.Matrix.TranslateM(matrix, 0, 0, 0, 250);
             Android.Opengl.Matrix.RotateM(matrix, 0, a, 1, 1, 1);
             // Android.Opengl.Matrix.PerspectiveM(matrix, 0, 50.0f, 1,  1, 1);
             Android.Opengl.Matrix.ScaleM(matrix, 0, 50, 50, 50);
+            
 
             float startX = -100;
             float startY = -100;
@@ -137,7 +139,7 @@ namespace SGWW
 
                 Android.Opengl.Matrix.MultiplyMV(vectorResult, 0, matrix, 0, partModelVector, 0);
 
-                canvas.DrawPoint(vectorResult[0] + 500, vectorResult[1] + 500, paintPoint);
+               // canvas.DrawPoint(vectorResult[0] + 500, vectorResult[1] + 500, paintPoint);
                 
 
                 if (countCicle % 3 == 0)
@@ -145,6 +147,7 @@ namespace SGWW
                     Point point = new Point();
                     point.x = vectorResult[0];
                     point.y = vectorResult[1];
+                    point.z = vectorResult[2];
 
                     tringle[0] = point;
                 }
@@ -155,6 +158,7 @@ namespace SGWW
                     Point point = new Point();
                     point.x = vectorResult[0];
                     point.y = vectorResult[1];
+                    point.z = vectorResult[2];
 
                     tringle[1] = point;
                 }
@@ -164,15 +168,30 @@ namespace SGWW
                     Point point = new Point();
                     point.x = vectorResult[0];
                     point.y = vectorResult[1];
+                    point.z = vectorResult[2];
 
                     tringle[2] = point;
                 }
 
                 if (tringle[0] !=null && tringle[1] != null && tringle[2] != null)
                 {
-                    canvas.DrawLine(tringle[0].x + 500, tringle[0].y + 500, tringle[1].x + 500, tringle[1].y + 500, paintPoint);
-                    canvas.DrawLine(tringle[1].x + 500, tringle[1].y + 500, tringle[2].x + 500, tringle[2].y + 500, paintPoint);
-                    canvas.DrawLine(tringle[2].x + 500, tringle[2].y + 500, tringle[1].x + 500, tringle[1].y + 500, paintPoint);
+                    float xV1 = (550 / tringle[0].z) * tringle[0].x;
+                    float yV1 = (550 / tringle[0].z) * tringle[0].y;
+
+                    float xV2 = (550 / tringle[1].z) * tringle[1].x;
+                    float yV2 = (550 / tringle[1].z) * tringle[1].y;
+
+                    float xV3 = (550 / tringle[2].z) * tringle[2].x;
+                    float yV3 = (550 / tringle[2].z) * tringle[2].y;
+
+
+                    canvas.DrawLine(xV1 + 500, yV1 + 500, xV2 + 500, yV2 + 500, paintPoint);
+                    canvas.DrawLine(xV2 + 500, yV2 + 500, xV3 + 500, yV3 + 500, paintPoint);
+                    canvas.DrawLine(xV3 + 500, yV3 + 500, xV1 + 500, yV1 + 500, paintPoint);
+
+                    //canvas.DrawLine(tringle[0].x + 500, tringle[0].y + 500, tringle[1].x + 500, tringle[1].y + 500, paintPoint);
+                    //canvas.DrawLine(tringle[1].x + 500, tringle[1].y + 500, tringle[2].x + 500, tringle[2].y + 500, paintPoint);
+                    //canvas.DrawLine(tringle[2].x + 500, tringle[2].y + 500, tringle[1].x + 500, tringle[1].y + 500, paintPoint);
 
                     tringle = new Point[3];
                 }

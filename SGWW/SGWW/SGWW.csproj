@@ -96,6 +96,7 @@
     <Compile Include="SectionVladimir\Point.cs" />
     <Compile Include="SectionVladimir\Utilits.cs" />
     <Compile Include="SectionVladimir\VladimirActivity.cs" />
+    <Compile Include="SectionVladimir\VladimirRender2.cs" />
     <Compile Include="SectionVladimir\VladimirRenderer.cs" />
     <Compile Include="SectionVladimir\VladimirView.cs" />
     <Compile Include="SelectActivity.cs" />
@@ -125,6 +126,10 @@
     <AndroidResource Include="Resources\raw\one" />
     <AndroidResource Include="Resources\raw\dolphin2" />
     <AndroidResource Include="Resources\raw\dolphin3" />
+    <AndroidResource Include="Resources\raw\bottle" />
+    <AndroidResource Include="Resources\raw\bottle2" />
+    <AndroidResource Include="Resources\raw\buggy" />
+    <AndroidResource Include="Resources\raw\iam" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_public.axml">
@@ -238,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\den_housetextutre2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\iam.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

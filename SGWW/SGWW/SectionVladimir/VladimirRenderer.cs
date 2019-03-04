@@ -6,9 +6,15 @@ namespace SGWW
 {
     public class VladimirRenderer : Renderer
     {
+        GLObject cube;
+        public float angleX;
+        public float angleY;
 
         public VladimirRenderer(Context context) : base(context)
         {
+
+          
+
         }
 
         public override void OnSurfaceCreated(IGL10 gl, Javax.Microedition.Khronos.Egl.EGLConfig config)
@@ -18,10 +24,16 @@ namespace SGWW
             //SETUP OpenGL ES             
             GLES20.GlClearColor(0.9f, 0.9f, 0.9f, 0.9f);
             GLES20.GlEnable(GLES20.GlDepthTest); //uncoment if needs enabled dpeth test
-            //ENDSETUP OpenGL ES             
+                                                 //ENDSETUP OpenGL ES             
 
             //Loading objects 
-            glObjects.Add(new GLObject(this, "vertex_shader", "fragment_shader", "oldhouse_objvertex", "oldhouse_objnormal", "oldhouse_objtexture", "body"));
+            //glObjects.Add(new GLObject(this, "vertex_shader", "fragment_shader", "oldhouse_objvertex", "oldhouse_objnormal", "oldhouse_objtexture", "body"));
+
+
+            cube = new GLObject(this, "vertex_shader", "fragment_shader", "iam", "iam");
+            glObjects.Add(cube);
+
+          
 
             //Ask android to run RAM garbage cleaner
             System.GC.Collect();
@@ -34,8 +46,12 @@ namespace SGWW
 
         public override void OnDrawFrame(IGL10 gl)
         {
+            
             GLES20.GlClear(GLES20.GlColorBufferBit | GLES20.GlDepthBufferBit);
             base.OnDrawFrame(gl);
+
+             cube.angleX = this.angleX;
+            cube.angleY = this.angleY;
         }
     }
 }

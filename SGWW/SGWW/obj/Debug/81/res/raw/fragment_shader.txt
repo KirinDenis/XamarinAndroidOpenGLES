@@ -7,6 +7,5 @@
         uniform sampler2D u_Texture;        // This is the texture image handler 
         void main()                         // The entry point for our fragment shader.
         {                              
-           gl_FragColor = texture2D(u_Texture, v_TextureCoord) * v_Color;     // Pass the color directly through the pipeline.		                
-                                                                                 //+ "   gl_FragColor = v_Color;  \n"   // Pass the color directly through the pipeline.		                
+           gl_FragColor = texture2D(u_Texture, v_TextureCoord) * v_Color * vec4(1.0, 1.0, 1.0, 1.0);     // Pass the color directly through the pipeline.		                
         }        

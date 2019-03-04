@@ -26,9 +26,11 @@ namespace SGWW
 
         public string compileResult = string.Empty;
 
-        public float x, y, z, angle, ay, az;
+        public float x, y, z, ax, ay, az;
 
-        public float ax = 1.0f;
+        public float angleX = 0.0f;
+        public float angleY = 0.0f;
+        
         public float scale = 1.0f;
 
         /// <summary>
@@ -101,7 +103,8 @@ namespace SGWW
             float[] mModelMatrix = new float[16];
             Matrix.SetIdentityM(mModelMatrix, 0);
             Matrix.ScaleM(mModelMatrix, 0, scale, scale, scale);
-            Matrix.RotateM(mModelMatrix, 0, angle, ax, ay, az);
+            Matrix.RotateM(mModelMatrix, 0, angleX, 1, ay, az);
+            Matrix.RotateM(mModelMatrix, 0, angleY, ax, 1, az);
             Matrix.TranslateM(mModelMatrix, 0, x, y, z);
 
             // Tell OpenGL to use this program when rendering.
