@@ -17,6 +17,8 @@ namespace SGWW
         private VladimirView vladimirView;
         private VladimirRenderer renderer;
         private VladimirRender2 renderer2;
+        private SGWW.VladimirRender3VBO renderer3;
+        private Test tewst;
 
         private float x = -1;
         private float y = -1;
@@ -34,9 +36,9 @@ namespace SGWW
 
             _GLSurfaceView = new GLSurfaceView(this);
             _GLSurfaceView.SetEGLContextClientVersion(2);
-            
-            renderer = new VladimirRenderer(this);
-            _GLSurfaceView.SetRenderer(renderer);
+
+            renderer3 = new VladimirRender3VBO(this);
+            _GLSurfaceView.SetRenderer(renderer3);
 
             RelativeLayout sceneHolder = (RelativeLayout)this.FindViewById(Resource.Id.sceneHolder);
             sceneHolder.AddView(_GLSurfaceView);
@@ -56,24 +58,24 @@ namespace SGWW
 
         public bool OnTouch(View v, MotionEvent e)
         {
-            switch (e.Action)
-            {
-                case MotionEventActions.Down:
-                    x = -1;
-                    y = -1;
-                    break;
-                case MotionEventActions.Move:
-                    if (x != -1)
-                    {
-                        renderer.angleX += (y - e.RawY) / 5; 
-                        renderer.angleY -= (x - e.RawX) / 5;
-                    }
+            //switch (e.Action)
+            //{
+            //    case MotionEventActions.Down:
+            //        x = -1;
+            //        y = -1;
+            //        break;
+            //    case MotionEventActions.Move:
+            //        if (x != -1)
+            //        {
+            //            renderer.angleX += (y - e.RawY) / 5; 
+            //            renderer.angleY -= (x - e.RawX) / 5;
+            //        }
 
-                    x = e.RawX;
-                    y = e.RawY;
+            //        x = e.RawX;
+            //        y = e.RawY;
 
-                    break;
-            }
+            //        break;
+            //}
             return true;
         }
 

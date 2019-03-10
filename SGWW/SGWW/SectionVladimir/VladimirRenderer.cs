@@ -30,7 +30,8 @@ namespace SGWW
             //glObjects.Add(new GLObject(this, "vertex_shader", "fragment_shader", "oldhouse_objvertex", "oldhouse_objnormal", "oldhouse_objtexture", "body"));
 
 
-            cube = new GLObject(this, "vertex_shader", "fragment_shader", "iam", "iam");
+            cube = new GLObject(this, "vertex_shader_vladimir_cube", "fragment_shader_vladimir_cube", "iam", "iam");
+           // cube = new GLObject(this, "vertex_shader", "fragment_shader", "iam", "iam");
             glObjects.Add(cube);
 
           

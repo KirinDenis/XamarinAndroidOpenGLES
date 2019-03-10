@@ -94,9 +94,11 @@
     <Compile Include="SectionVitaly\VitalyView.cs" />
     <Compile Include="SectionVladimir\Distanсe.cs" />
     <Compile Include="SectionVladimir\Point.cs" />
+    <Compile Include="SectionVladimir\Test.cs" />
     <Compile Include="SectionVladimir\Utilits.cs" />
     <Compile Include="SectionVladimir\VladimirActivity.cs" />
     <Compile Include="SectionVladimir\VladimirRender2.cs" />
+    <Compile Include="SectionVladimir\VladimirRender3.cs" />
     <Compile Include="SectionVladimir\VladimirRenderer.cs" />
     <Compile Include="SectionVladimir\VladimirView.cs" />
     <Compile Include="SelectActivity.cs" />
@@ -246,6 +248,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\iam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\fragment_shader_vladimir_cube.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\vertex_shader_vladimir_cube.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

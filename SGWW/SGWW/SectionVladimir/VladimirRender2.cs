@@ -3,6 +3,7 @@ using Android.Content;
 using Javax.Microedition.Khronos.Opengles;
 using Java.Nio;
 using System;
+using System.Collections.Generic;
 
 namespace SGWW
 {
@@ -42,6 +43,11 @@ namespace SGWW
         // Size of the color data in elements. 
         private int mColorDataSize = 4;
 
+        private VBO vertexVBO;
+        private VBO normalVBO;
+        private VBO textureVBO;
+        private Texture texture;
+
         public VladimirRender2(Context context) : base(context)
         {                                                                                        
 
@@ -61,6 +67,19 @@ namespace SGWW
 
                 0.0f, 0.559016994f, 0.0f,
                 0.0f, 1.0f, 0.0f, 1.0f};
+
+            List<VBO> VBOs = new ObjParser().GetVBOs(context, "iam");
+            //Loading vertexes from resource file to VBO
+            vertexVBO = VBOs[0];
+            //Loading UVMap from resource file to VBO
+            textureVBO = VBOs[1];
+            //Loading normales from resource file to VBO
+            normalVBO = VBOs[2];
+            //Loading texture image file
+            texture = new Texture(context, "iam");
+            //Ask android to run RAM garbage cleaner
+            System.GC.Collect();
+
 
             mTriangle1Vertices = ByteBuffer.AllocateDirect(triangle1VerticesData.Length * mBytesPerFloat).Order(ByteOrder.NativeOrder()).AsFloatBuffer();
             mTriangle1Vertices.Put(triangle1VerticesData).Position(0);

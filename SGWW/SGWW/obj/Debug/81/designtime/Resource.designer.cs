@@ -3138,37 +3138,43 @@ namespace SGWW
 			public const int fragment_shader2 = 2130968615;
 			
 			// aapt resource value: 0x7F040028
-			public const int iam = 2130968616;
+			public const int fragment_shader_vladimir_cube = 2130968616;
 			
 			// aapt resource value: 0x7F040029
-			public const int object1_objvertex = 2130968617;
+			public const int iam = 2130968617;
 			
 			// aapt resource value: 0x7F040030
-			public const int object2_objvertex = 2130968624;
+			public const int object1_objvertex = 2130968624;
 			
 			// aapt resource value: 0x7F040031
-			public const int object3_objvertex = 2130968625;
+			public const int object2_objvertex = 2130968625;
 			
 			// aapt resource value: 0x7F040032
-			public const int oldhouse_objnormal = 2130968626;
+			public const int object3_objvertex = 2130968626;
 			
 			// aapt resource value: 0x7F040033
-			public const int oldhouse_objtexture = 2130968627;
+			public const int oldhouse_objnormal = 2130968627;
 			
 			// aapt resource value: 0x7F040034
-			public const int oldhouse_objvertex = 2130968628;
+			public const int oldhouse_objtexture = 2130968628;
 			
 			// aapt resource value: 0x7F040035
-			public const int one = 2130968629;
+			public const int oldhouse_objvertex = 2130968629;
 			
 			// aapt resource value: 0x7F040036
-			public const int simpleobj = 2130968630;
+			public const int one = 2130968630;
 			
 			// aapt resource value: 0x7F040037
-			public const int vertex_line_shader = 2130968631;
+			public const int simpleobj = 2130968631;
 			
 			// aapt resource value: 0x7F040038
-			public const int vertex_shader = 2130968632;
+			public const int vertex_line_shader = 2130968632;
+			
+			// aapt resource value: 0x7F040039
+			public const int vertex_shader = 2130968633;
+			
+			// aapt resource value: 0x7F040040
+			public const int vertex_shader_vladimir_cube = 2130968640;
 			
 			static Raw()
 			{
