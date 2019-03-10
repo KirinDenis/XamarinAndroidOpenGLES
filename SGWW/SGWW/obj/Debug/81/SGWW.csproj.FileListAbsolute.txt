@@ -68,6 +68,8 @@ F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\res
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\res\drawable\iam.png
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\res\raw\fragment_shader_vladimir_cube.txt
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\res\raw\vertex_shader_vladimir_cube.txt
+F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\res\raw\fragmentshadervladimir1.txt
+F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\res\raw\vertexshadervladimir1.txt
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\bin\Debug\Mono.Android.pdb
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\bin\Debug\mscorlib.pdb
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\bin\Debug\System.Core.pdb
@@ -98,6 +100,5 @@ F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\and
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\android\assets\System.Runtime.Serialization.pdb
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\android\assets\System.ServiceModel.Internals.pdb
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\android\assets\System.Xml.pdb
-F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\SGWW.csprojAssemblyReference.cache
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\bin\Debug\SGWW.dll
 F:\Programs\GitHub\OpenGlDenis\XamarinAndroidOpenGLES\SGWW\SGWW\obj\Debug\81\linksrc\SGWW.dll.mdb

@@ -3245,18 +3245,20 @@ containing a value of this type.
         public static int fragment_shader=0x7f060015;
         public static int fragment_shader2=0x7f060016;
         public static int fragment_shader_vladimir_cube=0x7f060017;
-        public static int iam=0x7f060018;
-        public static int object1_objvertex=0x7f060019;
-        public static int object2_objvertex=0x7f06001a;
-        public static int object3_objvertex=0x7f06001b;
-        public static int oldhouse_objnormal=0x7f06001c;
-        public static int oldhouse_objtexture=0x7f06001d;
-        public static int oldhouse_objvertex=0x7f06001e;
-        public static int one=0x7f06001f;
-        public static int simpleobj=0x7f060020;
-        public static int vertex_line_shader=0x7f060021;
-        public static int vertex_shader=0x7f060022;
-        public static int vertex_shader_vladimir_cube=0x7f060023;
+        public static int fragmentshadervladimir1=0x7f060018;
+        public static int iam=0x7f060019;
+        public static int object1_objvertex=0x7f06001a;
+        public static int object2_objvertex=0x7f06001b;
+        public static int object3_objvertex=0x7f06001c;
+        public static int oldhouse_objnormal=0x7f06001d;
+        public static int oldhouse_objtexture=0x7f06001e;
+        public static int oldhouse_objvertex=0x7f06001f;
+        public static int one=0x7f060020;
+        public static int simpleobj=0x7f060021;
+        public static int vertex_line_shader=0x7f060022;
+        public static int vertex_shader=0x7f060023;
+        public static int vertex_shader_vladimir_cube=0x7f060024;
+        public static int vertexshadervladimir1=0x7f060025;
     }
     public static final class string {
         public static int abc_action_bar_home_description=0x7f090000;

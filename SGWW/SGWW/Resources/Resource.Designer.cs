@@ -3243,40 +3243,46 @@ namespace SGWW
 			public const int fragment_shader_vladimir_cube = 2131099671;
 			
 			// aapt resource value: 0x7f060018
-			public const int iam = 2131099672;
+			public const int fragmentshadervladimir1 = 2131099672;
 			
 			// aapt resource value: 0x7f060019
-			public const int object1_objvertex = 2131099673;
+			public const int iam = 2131099673;
 			
 			// aapt resource value: 0x7f06001a
-			public const int object2_objvertex = 2131099674;
+			public const int object1_objvertex = 2131099674;
 			
 			// aapt resource value: 0x7f06001b
-			public const int object3_objvertex = 2131099675;
+			public const int object2_objvertex = 2131099675;
 			
 			// aapt resource value: 0x7f06001c
-			public const int oldhouse_objnormal = 2131099676;
+			public const int object3_objvertex = 2131099676;
 			
 			// aapt resource value: 0x7f06001d
-			public const int oldhouse_objtexture = 2131099677;
+			public const int oldhouse_objnormal = 2131099677;
 			
 			// aapt resource value: 0x7f06001e
-			public const int oldhouse_objvertex = 2131099678;
+			public const int oldhouse_objtexture = 2131099678;
 			
 			// aapt resource value: 0x7f06001f
-			public const int one = 2131099679;
+			public const int oldhouse_objvertex = 2131099679;
 			
 			// aapt resource value: 0x7f060020
-			public const int simpleobj = 2131099680;
+			public const int one = 2131099680;
 			
 			// aapt resource value: 0x7f060021
-			public const int vertex_line_shader = 2131099681;
+			public const int simpleobj = 2131099681;
 			
 			// aapt resource value: 0x7f060022
-			public const int vertex_shader = 2131099682;
+			public const int vertex_line_shader = 2131099682;
 			
 			// aapt resource value: 0x7f060023
-			public const int vertex_shader_vladimir_cube = 2131099683;
+			public const int vertex_shader = 2131099683;
+			
+			// aapt resource value: 0x7f060024
+			public const int vertex_shader_vladimir_cube = 2131099684;
+			
+			// aapt resource value: 0x7f060025
+			public const int vertexshadervladimir1 = 2131099685;
 			
 			static Raw()
 			{
