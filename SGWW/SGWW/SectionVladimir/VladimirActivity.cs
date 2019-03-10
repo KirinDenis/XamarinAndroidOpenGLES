@@ -58,24 +58,24 @@ namespace SGWW
 
         public bool OnTouch(View v, MotionEvent e)
         {
-            //switch (e.Action)
-            //{
-            //    case MotionEventActions.Down:
-            //        x = -1;
-            //        y = -1;
-            //        break;
-            //    case MotionEventActions.Move:
-            //        if (x != -1)
-            //        {
-            //            renderer.angleX += (y - e.RawY) / 5; 
-            //            renderer.angleY -= (x - e.RawX) / 5;
-            //        }
+            switch (e.Action)
+            {
+                case MotionEventActions.Down:
+                    x = -1;
+                    y = -1;
+                    break;
+                case MotionEventActions.Move:
+                    if (x != -1)
+                    {
+                        renderer3.angerX -= (y - e.RawY) / 5;
+                        renderer3.angerY -= (x - e.RawX) / 5;
+                    }
 
-            //        x = e.RawX;
-            //        y = e.RawY;
+                    x = e.RawX;
+                    y = e.RawY;
 
-            //        break;
-            //}
+                    break;
+            }
             return true;
         }
 

@@ -61,6 +61,13 @@ namespace SGWW
         float[] modelVerticesData;
         float[] modelTextureUVMapData;
 
+        //----
+
+        public float angerX;
+        public float angerY;
+
+        public float scale = 0.2f;
+
         public VladimirRender3VBO(Context context) : base()
         {
             this.context = context;
@@ -72,7 +79,7 @@ namespace SGWW
 
             ObjParser model3D = new ObjParser();
 
-            List<byte[]> test1 = model3D.ParsedObject(context, "iam");             
+            List<byte[]> test1 = model3D.ParsedObject(context, "buggy");             
 
             float[] vertexArray = new float[test1[0].Length / 4];
             System.Buffer.BlockCopy(test1[0], 0, vertexArray, 0, (int)test1[0].Length);
@@ -380,13 +387,14 @@ namespace SGWW
         {
 
             GLES20.GlClear(GLES20.GlColorBufferBit | GLES20.GlDepthBufferBit);
-
-            // Draw the triangle facing straight on.
-            angleInDegrees += 1.0f;
+                       
+            
             //Prepare model transformation matrix
             float[] mModelMatrix = new float[16];
             Matrix.SetIdentityM(mModelMatrix, 0);
-            Matrix.RotateM(mModelMatrix, 0, angleInDegrees, 1.0f, 0.0f, 0.0f);
+            Matrix.RotateM(mModelMatrix, 0, angerX, 1.0f, 0.0f, 0.0f);
+            Matrix.RotateM(mModelMatrix, 0, angerY, 0.0f, 1.0f, 0.0f);
+            Matrix.ScaleM(mModelMatrix, 0, scale, scale, scale);
 
 
             //Draw with VBO 
